@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Let's Learn And Play</title>
+<meta name="description" content="Classroom quiz games: teachers host with a code, students join with just their name.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@600;700;800;900&family=Cairo:wght@600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
+<style>html{background:#170d3a}
+:root{--bg1:#170d3a;--bg2:#3a1c8c;--ink:#1d1640;--muted:#6b6790;--pri:#7c3aed;--pri-d:#5b21b6;--pink:#ff4d8d;--yellow:#ffc93c;--green:#10c98f;--blue:#3a86ff;--red:#ff4d6d;--orange:#ff8c42;--line:#ece8fb}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--ink);min-height:100vh;
+background:radial-gradient(circle at 15% -10%,#6d38f0 0,transparent 45%),radial-gradient(circle at 95% 25%,#ff4d8d40 0,transparent 40%),radial-gradient(circle at 50% 110%,#10c98f30 0,transparent 45%),linear-gradient(160deg,var(--bg1),var(--bg2));background-attachment:fixed}
+h1,h2,h3,.disp{font-family:'Lilita One',Nunito,sans-serif;font-weight:400;letter-spacing:.3px;margin:0}
+button{font-family:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:8px 16px 60px}
+.top{display:flex;align-items:center;gap:12px;padding:12px 16px;max-width:1120px;margin:0 auto}
+.logo{font-family:'Lilita One';font-size:24px;color:#fff;cursor:pointer;display:flex;align-items:center;gap:8px;text-shadow:0 3px 0 #0005;user-select:none}
+.logo .y{color:var(--yellow)} .logo .p{color:#ff8fb8}
+.chip{display:flex;align-items:center;gap:8px;background:#ffffff1f;color:#fff;padding:4px 12px 4px 4px;border-radius:99px;font-weight:800;font-size:14px;cursor:pointer}
+.chip img{width:30px;height:30px;border-radius:50%;background:#fff}
+.card{background:#fff;border-radius:22px;padding:20px;box-shadow:0 7px 0 #00000026,0 18px 40px #0000002e}
+.card+.card{margin-top:16px}
+.btn{font-weight:900;border:0;border-radius:14px;padding:12px 20px;cursor:pointer;color:#fff;background:var(--pri);box-shadow:0 5px 0 var(--pri-d);transition:transform .08s,box-shadow .08s,filter .15s;font-size:16px;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--pri-d)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.g{background:var(--green);box-shadow:0 5px 0 #08976a}
+.btn.y{background:var(--yellow);color:#4a3200;box-shadow:0 5px 0 #c9971a}
+.btn.p{background:var(--pink);box-shadow:0 5px 0 #c42a63}
+.btn.b{background:var(--blue);box-shadow:0 5px 0 #2160c9}
+.btn.r{background:var(--red);box-shadow:0 5px 0 #c42a45}
+.btn.ghost{background:#efeafd;color:var(--pri-d);box-shadow:0 5px 0 #d6cbf7}
+.btn.sm{padding:7px 12px;font-size:13px;border-radius:10px}
+.btn.big{padding:16px 28px;font-size:20px}
+.btn.wide{width:100%}
+input,select,textarea{font:inherit;font-weight:700;border:2.5px solid var(--line);border-radius:12px;padding:11px 13px;width:100%;color:var(--ink);background:#faf9ff;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--pri)}
+textarea{min-height:170px;resize:vertical;font-weight:600}
+label{font-weight:900;font-size:13px;color:var(--muted);display:block;margin:12px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+.muted{color:var(--muted)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.center{text-align:center}
+.h-white{color:#fff;text-shadow:0 3px 0 #0004}
+.sec-title{color:#fff;margin:26px 0 12px;font-size:24px;text-shadow:0 3px 0 #0004;display:flex;align-items:center;gap:10px}
+.sec-title small{font-family:Nunito;font-size:14px;opacity:.8;font-weight:800}
+.hero{text-align:center;color:#fff;padding:26px 10px 18px}
+.hero h1{font-size:clamp(38px,7vw,72px);line-height:1;text-shadow:0 6px 0 #0005}
+.hero h1 .y{color:var(--yellow)} .hero h1 .p{color:#ff8fb8} .hero h1 .g{color:#5ff2c4}
+.hero p{font-weight:800;font-size:18px;opacity:.9;margin:12px 0 0}
+.float{display:inline-block;animation:fl 3s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+.tile{border-radius:20px;padding:18px;color:#fff;cursor:pointer;box-shadow:0 6px 0 #0003;transition:transform .12s;position:relative;overflow:hidden;min-height:120px}
+.tile:hover{transform:translateY(-3px) rotate(-.5deg)}
+.tile .em{font-size:40px;line-height:1}
+.tile h3{font-size:22px;margin-top:8px}
+.tile small{font-weight:800;opacity:.9}
+.mode{border-radius:20px;padding:16px;background:#fff;cursor:pointer;box-shadow:0 6px 0 #0002;border:3px solid transparent;transition:transform .12s}
+.mode:hover{transform:translateY(-3px);border-color:var(--pri)}
+.mode .em{font-size:38px}
+.mode h3{font-size:21px;margin:6px 0 2px}
+.tag{display:inline-block;font-size:11px;font-weight:900;padding:3px 8px;border-radius:99px;background:#efeafd;color:var(--pri-d);text-transform:uppercase;letter-spacing:.5px}
+.tag.ga{background:#ffe3ef;color:#c42a63}
+.tag.wg{background:#ddf7ee;color:#08765a}
+.lv{display:inline-block;font-size:11px;font-weight:900;padding:3px 8px;border-radius:99px;color:#fff}
+.lv1{background:#10c98f}.lv2{background:#ff8c42}.lv3{background:#7c3aed}
+.bigcode{font-family:'Lilita One';font-size:clamp(54px,11vw,110px);letter-spacing:8px;color:var(--pri-d);line-height:1;margin:6px 0}
+.plgrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.pl{background:#fff;border-radius:16px;padding:8px 12px;display:flex;align-items:center;gap:8px;font-weight:900;box-shadow:0 4px 0 #0002;animation:pop .35s}
+.pl .av{font-size:26px}
+.pl select{width:auto;padding:4px 6px;font-size:12px;border-radius:8px}
+.x{border:0;background:#ffe3e8;color:#c42a45;border-radius:8px;cursor:pointer;font-weight:900;padding:3px 7px}
+@keyframes pop{0%{transform:scale(.6);opacity:0}80%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tab{background:#ffffff22;color:#fff;border:0;border-radius:12px;padding:10px 16px;font-weight:900;cursor:pointer;font-size:15px}
+.tab.on{background:#fff;color:var(--pri-d)}
+.lb{display:flex;flex-direction:column;gap:8px}
+.lbr{display:flex;align-items:center;gap:12px;background:#fff;border-radius:14px;padding:10px 14px;font-weight:900;box-shadow:0 4px 0 #0001;border:2px solid var(--line)}
+.lbr.me{border-color:var(--yellow);background:#fffbea}
+.lbr .rk{width:34px;text-align:center;font-family:'Lilita One';font-size:20px;color:var(--muted)}
+.lbr .av{font-size:26px}
+.lbr .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbr .sc{font-family:'Lilita One';font-size:18px;color:var(--pri-d);white-space:nowrap}
+/* play */
+.playbar{display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;margin:4px 0 12px;flex-wrap:wrap}
+.pill{background:#ffffff22;border-radius:99px;padding:7px 14px;font-size:15px}
+.pill.y{background:var(--yellow);color:#4a3200}
+.playgrid{display:grid;grid-template-columns:1fr 320px;gap:16px;align-items:start}
+@media(max-width:860px){.playgrid{grid-template-columns:1fr}}
+.qcard{background:#fff;border-radius:24px;padding:24px;box-shadow:0 7px 0 #0003;min-height:150px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.qtext{font-size:clamp(20px,3vw,30px);font-weight:900;line-height:1.25}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:560px){.answers{grid-template-columns:1fr}}
+.ans{border:0;border-radius:18px;padding:20px 16px;color:#fff;font-weight:900;font-size:clamp(16px,2.2vw,21px);cursor:pointer;min-height:86px;box-shadow:0 6px 0 #0003;display:flex;align-items:center;gap:12px;text-align:left;transition:transform .08s,opacity .2s}
+.ans:active{transform:translateY(4px);box-shadow:0 2px 0 #0003}
+.ans{text-align:start}
+.ans .sh{font-size:22px;opacity:.85}
+.ans.c0{background:#ff4d6d}.ans.c1{background:#3a86ff}.ans.c2{background:#f5a623}.ans.c3{background:#10c98f}
+.ans.dim{opacity:.35}.ans.right{outline:5px solid #fff;box-shadow:0 0 0 9px #10c98f}.ans.gone{visibility:hidden}
+.tbar{height:10px;border-radius:99px;background:#efeafd;margin-top:16px;overflow:hidden}
+.tbar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--yellow),var(--red));transition:width .2s linear}
+.pups{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.pup{border:0;border-radius:12px;padding:8px 12px;font-weight:900;cursor:pointer;background:#fff3c4;color:#6b4b00;box-shadow:0 4px 0 #e6c552}
+.fb{border-radius:24px;padding:30px 20px;text-align:center;color:#fff;cursor:pointer;animation:pop .3s;box-shadow:0 7px 0 #0003}
+.fb.ok{background:linear-gradient(135deg,#10c98f,#0aa577)} .fb.no{background:linear-gradient(135deg,#ff4d6d,#d92b52)}
+.fb h2{font-size:clamp(30px,5vw,48px)} .fb .sub{font-weight:900;font-size:20px;margin-top:8px}
+.fb .ca{background:#ffffff26;border-radius:14px;padding:10px 14px;margin-top:14px;font-weight:800}
+.choose{text-align:center;color:#fff}
+.choose h2{font-size:clamp(24px,4vw,36px);text-shadow:0 3px 0 #0004;margin:10px 0 18px}
+.copts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.copt{border:0;background:#fff;border-radius:20px;padding:18px 20px;min-width:150px;font-weight:900;font-size:20px;cursor:pointer;box-shadow:0 6px 0 #0003;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink);animation:pop .35s;transition:transform .1s}
+.copt:hover{transform:translateY(-4px) scale(1.03)}
+.copt b{font-family:'Lilita One';font-size:28px;font-weight:400}
+.copt small{font-size:13px;color:var(--muted)}
+.copt.chest{font-size:64px;min-width:130px;padding:20px}
+.side .card{padding:16px}
+.mystat{font-family:'Lilita One';font-size:30px;color:var(--pri-d);text-align:center;line-height:1.1}
+.subt{text-align:center;font-weight:900;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.5px}
+.track{position:relative;background:#f3f0ff;border-radius:14px;padding:8px 34px 8px 8px;margin-top:10px}
+.track.obby{background:repeating-linear-gradient(90deg,#e7f9f1 0 18px,#d2f3e5 18px 36px)}
+.lane{position:relative;height:34px;border-bottom:2px dashed #d8d0f5}
+.lane:last-of-type{border-bottom:0}
+.lane .car{position:absolute;top:2px;font-size:24px;transition:left .5s cubic-bezier(.3,1.6,.6,1)}
+.lane .ln{position:absolute;right:0;top:8px;font-size:11px;font-weight:900;color:var(--muted)}
+.lane.me .ln{color:var(--pri-d)}
+.finish{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:22px}
+.hpbar{height:16px;border-radius:99px;background:#ffe3e8;overflow:hidden;margin-top:8px}
+.hpbar i{display:block;height:100%;background:linear-gradient(90deg,#ff4d6d,#ff8c42,#10c98f);transition:width .4s}
+.inv{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;font-size:22px;margin-top:8px}
+.r-common{filter:grayscale(.3)} .rar{font-size:11px;font-weight:900;padding:2px 8px;border-radius:99px;color:#fff}
+.rar.Common{background:#9aa0b5}.rar.Rare{background:#3a86ff}.rar.Epic{background:#9b5de5}.rar.Legendary{background:#f5a623}.rar.Mythic{background:linear-gradient(90deg,#ff4d8d,#7c3aed,#3a86ff)}
+.toasts{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:50;width:min(92vw,440px);pointer-events:none}
+.toast{background:#1d1640;color:#fff;font-weight:900;border-radius:14px;padding:12px 16px;box-shadow:0 8px 24px #0005;animation:pop .3s;text-align:center}
+.modal{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;z-index:40;padding:16px}
+.modal.on{display:flex}
+.modal .card{max-width:520px;width:100%}
+.spin{display:inline-block;width:20px;height:20px;border:3px solid #d6cbf7;border-top-color:var(--pri);border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle}
+@keyframes sp{to{transform:rotate(360deg)}}
+.avgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:8px}
+.avb{font-size:30px;border:3px solid var(--line);background:#faf9ff;border-radius:14px;padding:6px;cursor:pointer}
+.avb.on{border-color:var(--pri);background:#efeafd;transform:scale(1.08)}
+.lvcards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.lvcards{grid-template-columns:1fr}}
+.lvc{border:3px solid var(--line);border-radius:16px;padding:12px;cursor:pointer;text-align:center;font-weight:900;background:#faf9ff}
+.lvc.on{border-color:var(--pri);background:#efeafd}
+.lvc .em{font-size:30px}
+.qlist .qi{border:2px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.qlist .qi .t{flex:1}
+.qlist .opt{display:inline-block;margin:4px 6px 0 0;padding:3px 9px;border-radius:8px;background:#f3f0ff;font-size:13px;font-weight:800}
+.qlist .opt.ok{background:#d7f8ea;color:#08765a}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:start;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:8px;border-bottom:2px solid var(--line)}
+td{padding:9px 8px;border-bottom:1px solid var(--line);font-weight:700;vertical-align:top}
+.pct{display:inline-block;min-width:48px;text-align:center;padding:3px 8px;border-radius:8px;font-weight:900;color:#fff}
+.dots{display:flex;flex-wrap:wrap;gap:3px;max-width:340px}
+.dot{width:18px;height:18px;border-radius:5px;background:#e8e5f3;font-size:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900}
+.dot.ok{background:#10c98f}.dot.no{background:#ff4d6d}.dot.mix{background:#f5a623}
+.stat{background:#f6f3ff;border-radius:16px;padding:14px;text-align:center}
+.stat b{display:block;font-family:'Lilita One';font-size:30px;font-weight:400;color:var(--pri-d)}
+.stat span{font-weight:900;font-size:12px;color:var(--muted);text-transform:uppercase}
+.feed{display:flex;flex-direction:column;gap:6px;max-height:560px;overflow:auto}
+.fd{display:flex;gap:10px;align-items:center;border-radius:12px;padding:8px 12px;background:#faf9ff;border-inline-start:5px solid #ccc;font-weight:700;font-size:14px}
+.fd.ok{border-inline-start-color:#10c98f}.fd.no{border-inline-start-color:#ff4d6d}
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:12px;margin:20px 0}
+.pod{background:#fff;border-radius:18px 18px 6px 6px;text-align:center;padding:12px;width:150px;box-shadow:0 6px 0 #0003}
+.pod .av{font-size:44px}.pod .md{font-size:34px}
+.pod.p1{min-height:210px;background:linear-gradient(#fff,#fff3c4)}.pod.p2{min-height:170px}.pod.p3{min-height:140px}
+.banner{background:#fff3c4;border-radius:14px;padding:10px 14px;font-weight:900;color:#6b4b00;margin-bottom:12px;text-align:center}
+.rev{display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--line);padding:9px 0;font-weight:700}
+.bounce{display:inline-block;animation:bn 1s infinite}
+@keyframes bn{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.floaty{position:fixed;pointer-events:none;font-family:'Lilita One';font-size:34px;color:var(--yellow);text-shadow:0 3px 0 #0006;animation:up 1.2s forwards;z-index:60}
+@keyframes up{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-90px)}}
+.link{color:var(--pri);font-weight:900;cursor:pointer;text-decoration:underline}
+.empty{padding:26px;text-align:center;color:var(--muted);font-weight:800}
+html[lang=ar] body{font-family:Cairo,Nunito,system-ui,sans-serif}
+html[lang=ar] h1,html[lang=ar] h2,html[lang=ar] h3,html[lang=ar] .disp,html[lang=ar] .logo,html[lang=ar] .bigcode,html[lang=ar] .mystat,html[lang=ar] .lbr .rk,html[lang=ar] .lbr .sc,html[lang=ar] .copt b,html[lang=ar] .stat b,html[lang=ar] .pod b{font-family:Lalezar,'Lilita One',Cairo,sans-serif;letter-spacing:0;font-weight:400}
+html[lang=ar] .bigcode{font-family:'Lilita One',sans-serif;letter-spacing:8px}
+html[lang=ar] label{letter-spacing:0}
+.nt{unicode-bidi:plaintext}
+.qtext,.ans,.qlist .t{unicode-bidi:plaintext}
+.track{direction:ltr}
+.langb{margin-inline-start:auto;background:#ffffff22;color:#fff;border:0;border-radius:99px;padding:8px 14px;font-weight:900;cursor:pointer;font-size:14px;font-family:Cairo,Nunito,sans-serif}
+.langb:hover{background:#ffffff38}
+
+.demo{display:none;background:#ffc93c;color:#4a3200;text-align:center;font-weight:800;padding:6px 10px;font-size:14px}
+.gbtn{display:inline-flex;align-items:center;gap:12px;background:#fff;color:#1f1f1f;border:2px solid #dadce0;border-radius:12px;padding:11px 20px 11px 14px;font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 4px 0 #0002;font-family:Roboto,Nunito,Cairo,sans-serif;transition:transform .08s}
+.gbtn:hover{background:#f8f9ff}.gbtn:active{transform:translateY(3px)}.gbtn svg{width:22px;height:22px}
+.qmedia{margin:0 auto 12px;display:flex;justify-content:center}
+.qmedia img{max-width:100%;max-height:240px;border-radius:16px;box-shadow:0 4px 0 #0002;background:#f3f0ff;min-width:60px;min-height:60px}
+.qpic{font-size:64px;line-height:1.15;animation:fl 3s ease-in-out infinite}
+.thumb{width:72px;height:72px;border-radius:12px;object-fit:cover;background:#f3f0ff;flex:none}
+.thumbpic{width:72px;height:72px;border-radius:12px;background:#f3f0ff;display:flex;align-items:center;justify-content:center;font-size:28px;flex:none}
+.qtools{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.emo{width:76px;text-align:center;font-size:20px;padding:6px}
+.linkbox{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.linkbox input{max-width:420px;font-size:14px;direction:ltr}
+.qr img{width:180px;height:180px;border-radius:14px;background:#fff;padding:8px;box-shadow:0 4px 0 #0002}
+.lobbygrid{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
+@media(max-width:700px){.lobbygrid{grid-template-columns:1fr}}
+.tog{display:flex;align-items:center;gap:10px;font-weight:800;margin:10px 0;cursor:pointer;color:var(--ink);text-transform:none;letter-spacing:0;font-size:15px}
+.tog input{width:22px;height:22px;accent-color:var(--pri)}
+.mchips{display:flex;flex-wrap:wrap;gap:8px}
+.mchip{border:2.5px solid var(--line);background:#faf9ff;border-radius:12px;padding:8px 12px;font-weight:900;cursor:pointer;font-size:14px;color:var(--ink)}
+.mchip.on{border-color:var(--pri);background:#efeafd;color:var(--pri-d)}
+.making{text-align:center;padding:30px}
+.making .big{font-size:76px;display:inline-block;animation:bn 1s infinite}
+.conf{position:fixed;top:-40px;pointer-events:none;z-index:70;animation:fall 2s linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(540deg);opacity:.6}}
+.filerow{background:#fff;border-radius:12px;padding:8px 12px;font-weight:800;margin-top:6px}
+.dropz.over{border-color:var(--pri)!important;background:#efeafd!important}
+.chip span.link{text-decoration:underline;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="demo nt" id="demo">🧪 Demo mode — everything stays in this browser. Add your Firebase settings to <b>config.js</b> to go live (see README).</div>
+<div class="top"><div class="logo" onclick="home()">🎮 Let's <span class="y">Learn</span> And <span class="p">Play</span></div><button class="langb nt" id="langb" onclick="toggleLang()">🌐 عربي</button><div id="chip"></div></div>
+<div class="wrap" id="app"></div>
+<div class="toasts" id="toasts"></div>
+<div class="modal" id="modal"><div class="card" id="modalc"></div></div>
+<script src="config.js"></script>
+<script>
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const wpick=arr=>{let t=arr.reduce((s,x)=>s+x[1],0),r=Math.random()*t;for(const x of arr){if((r-=x[1])<0)return x[0]}return arr[0][0]};
+const fmt=n=>{n=Math.round(n||0);const a=Math.abs(n);return a>=1e6?(n/1e6).toFixed(1)+'M':a>=1e4?(n/1e3).toFixed(1)+'K':n.toLocaleString()};
+const mmss=ms=>{const s=Math.ceil(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function toast(m,ms=2600){const t=document.createElement('div');t.className='toast';t.textContent=m;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),ms)}
+function floaty(txt){const f=document.createElement('div');f.className='floaty';f.textContent=txt;f.style.left=(window.innerWidth/2-60+rnd(-60,60))+'px';f.style.top=(window.innerHeight/2-40)+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),1300)}
+function modal(html){$('#modalc').innerHTML=html;$('#modal').classList.add('on')}
+function closeModal(){$('#modal').classList.remove('on')}
+function copyText(t,msg){const ok=()=>toast(msg||'Copied!');const fail=()=>modal(`<h3>Copy this</h3><textarea class="nt" style="min-height:120px">${esc(t)}</textarea><button class="btn" onclick="closeModal()">Close</button>`);try{navigator.clipboard.writeText(t).then(ok,fail)}catch(e){fail()}}
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('could not load '+src.split('/').pop()));document.head.appendChild(s)})}
+let AC=null;
+function beep(type){if(!S.sfxOn)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const notes=type==='ok'?[660,880,1320]:type==='no'?[311,220]:type==='win'?[523,659,784,1047,1319]:[880];const t0=AC.currentTime;notes.forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain();o.type=type==='no'?'sawtooth':'triangle';o.frequency.value=f;const st=t0+i*.09;g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(type==='no'?.08:.16,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+.2);o.connect(g);g.connect(AC.destination);o.start(st);o.stop(st+.22)})}catch(e){}}
+function confetti(n=26){const em=['🎉','✨','⭐','🎊','💥','🌟','🟣','🟡','🟢'];for(let i=0;i<n;i++){const c=document.createElement('div');c.className='conf';c.textContent=pick(em);c.style.left=rnd(0,100)+'vw';c.style.animationDelay=(Math.random()*.5)+'s';c.style.fontSize=rnd(18,34)+'px';document.body.appendChild(c);setTimeout(()=>c.remove(),2600)}}
+const AVATARS=['🦊','🐸','🐼','🦄','🐙','🦖','🐲','👾','🤖','👽','🐵','🐯','🦁','🐧','🦉','🐝','🐳','🦈','🐨','🦥','🍕','🌮','🧋','🍩','⚡','🔥','💎','🚀','🎧','🛹','⚽','🏀','🎮','🧠','🗿','😎'];
+const LEVELS={1:{name:'Warm-Up',em:'🌱',d:'Level 1 · support'},2:{name:'Core',em:'🔥',d:'Level 2 · on-level'},3:{name:'Challenge',em:'🚀',d:'Level 3 · stretch'}};
+const W_OK=['W answer! 🔥','No cap, that\'s right 🧢','Big brain energy 🧠','Main character moment ✨','Absolute GOAT 🐐','That\'s bussin\' 😤','Sheesh! 🥶','Ate that. 💅'];
+const W_NO=['L… but you\'ll bounce back 💪','Not it, chief 😅','Plot twist: wrong 🙃','Skill issue (temporary) 🛠️','Next one\'s yours 😎','Respawning… 🔄'];
+const W_OK_AR=['إجابة أسطورية! 🔥','صح 100٪ 🧢','عقل جبّار 🧠','لحظة البطل ✨','أنت الأفضل 🐐','واو! 🥶','أبدعت! 💅'];
+const W_NO_AR=['خطأ… لكنك ستعود أقوى 💪','ليست هذه يا بطل 😅','مفاجأة: خطأ 🙃','المرة القادمة لك 😎','إعادة المحاولة… 🔄'];
+const GLOGO='<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>';
+const safeImg=s=>typeof s==='string'&&/^data:image\/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+/=]+$/.test(s)?s:'';
+async function toJpeg(blob,maxW,q){const bmp=await createImageBitmap(blob);const sc=Math.min(1,maxW/bmp.width);const c=document.createElement('canvas');c.width=Math.max(1,Math.round(bmp.width*sc));c.height=Math.max(1,Math.round(bmp.height*sc));const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(bmp,0,0,c.width,c.height);return await new Promise(r=>c.toBlob(r,'image/jpeg',q||.8))}
+const blobToDataURL=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(b)});
+
+/* ================= built-in topic library ================= */
+const TOPICS=[
+{id:'math',name:'Math',emoji:'➗',color:'#3a86ff',qs:[
+[1,'What is 5 + 7?','12','11','13','10'],[1,'What is 9 − 4?','5','4','6','3'],[1,'How many sides does a triangle have?','3','4','5','6'],[1,'Which number is the biggest?','84','48','72','39'],[1,'Half of 10 is…','5','2','4','20'],
+[2,'What is 7 × 8?','56','54','64','48'],[2,'What is 1/2 + 1/4?','3/4','2/6','1/6','2/4'],[2,'Perimeter of a square with 6 cm sides?','24 cm','36 cm','12 cm','18 cm'],[2,'Round 467 to the nearest hundred.','500','400','470','460'],[2,'What is 25% of 80?','20','25','40','16'],
+[3,'Solve: 3x + 5 = 20','x = 5','x = 15','x = 8','x = 4'],[3,'Area of a triangle with base 10 and height 6?','30','60','16','36'],[3,'What is (−4) × (−6)?','24','−24','−10','10'],[3,'A $40 shirt is 15% off. What is the new price?','$34','$25','$36','$34.50'],[3,'What is the next prime number after 23?','29','25','27','31']]},
+{id:'science',name:'Science',emoji:'🔬',color:'#10c98f',qs:[
+[1,'What do plants need to make their food?','Sunlight','Darkness','Sand','Plastic'],[1,'Which animal is a mammal?','Dolphin','Shark','Frog','Eagle'],[1,'What gas do we breathe in to live?','Oxygen','Carbon dioxide','Helium','Smoke'],[1,'What force pulls things down to Earth?','Gravity','Magnetism','Friction','Wind'],[1,'Ice is water in which state?','Solid','Liquid','Gas','Plasma'],
+[2,'What is the process plants use to make food from light?','Photosynthesis','Respiration','Evaporation','Digestion'],[2,'Water turning into vapor is called…','Evaporation','Condensation','Freezing','Melting'],[2,'Which organ pumps blood around the body?','Heart','Lungs','Liver','Brain'],[2,'A food chain always starts with a…','Producer','Predator','Decomposer','Consumer'],[2,'Which is a renewable energy source?','Solar power','Coal','Oil','Natural gas'],
+[3,'Why does ice float on water?','Ice is less dense than liquid water','Ice is heavier than water','Freezers put air inside ice','Water pushes all solids up'],[3,'Which part of an animal cell holds the DNA?','Nucleus','Cell membrane','Ribosome','Vacuole'],[3,'Same force, double the mass. The acceleration…','Halves','Doubles','Stays the same','Quadruples'],[3,'What is the chemical symbol for sodium?','Na','So','Sd','S'],[3,'Which of these is a chemical change?','Burning wood','Melting ice','Cutting paper','Dissolving sugar']]},
+{id:'english',name:'English',emoji:'📚',color:'#ff4d8d',qs:[
+[1,'Which word is a noun?','Dog','Run','Happy','Quickly'],[1,'What is the opposite of "hot"?','Cold','Warm','Sunny','Big'],[1,'Which word rhymes with "cat"?','Hat','Cup','Dog','Cut'],[1,'Choose the right word: I ___ a student.','am','is','are','be'],[1,'Which letter is a vowel?','E','B','T','K'],
+[2,'What is the plural of "child"?','Children','Childs','Childes','Childrens'],[2,'"The fluffy cat slept." Which word is the adjective?','fluffy','cat','slept','the'],[2,'What is the past tense of "run"?','ran','runned','running','runs'],[2,'Which is a synonym for "happy"?','Joyful','Angry','Tired','Nervous'],[2,'Which sentence is correct?','They\'re going to their house.','Their going to there house.','There going to they\'re house.','They\'re going to there house.'],
+[3,'"The wind whispered through the trees" is an example of…','Personification','Simile','Alliteration','Hyperbole'],[3,'Which sentence uses a simile?','She runs like the wind.','She is the wind.','The wind is fast.','Wind, wild wind.'],[3,'What is the theme of a story?','Its central message or lesson','Its setting','The main character\'s name','Its title'],[3,'Which sentence is punctuated correctly?','Wait, I need eggs, milk, and bread.','Wait I need, eggs milk and bread.','Wait, I need eggs milk, and, bread.','Wait I need eggs, milk and, bread'],[3,'"Benevolent" most nearly means…','Kind and generous','Angry and loud','Clever and sneaky','Shy and quiet']]},
+{id:'geo',name:'Geography',emoji:'🌍',color:'#ff8c42',qs:[
+[1,'Which is the largest ocean?','Pacific','Atlantic','Indian','Arctic'],[1,'A very big area of land like Africa is called a…','Continent','Island','City','River'],[1,'Which country is famous for the Pyramids of Giza?','Egypt','Brazil','Japan','Canada'],[1,'What is the capital of the UAE?','Abu Dhabi','Dubai','Sharjah','Al Ain'],[1,'On most maps, which direction is at the top?','North','South','East','West'],
+[2,'How many continents are there?','7','5','6','8'],[2,'What is the capital of Japan?','Tokyo','Kyoto','Osaka','Seoul'],[2,'The imaginary line around the middle of Earth is the…','Equator','Prime Meridian','Tropic of Cancer','Arctic Circle'],[2,'The Sahara Desert is on which continent?','Africa','Asia','Australia','South America'],[2,'Which river flows through Egypt?','Nile','Amazon','Danube','Mississippi'],
+[3,'Lines of longitude measure distance…','East or west of the Prime Meridian','North or south of the equator','Above sea level','Between continents'],[3,'Which country had the largest population in 2024?','India','China','USA','Indonesia'],[3,'Why are many deserts found near 30° latitude?','Sinking dry air creates high pressure','They are closest to the Sun','Warm ocean currents flow there','Mountains surround them'],[3,'Which strait links the Persian Gulf to the Gulf of Oman?','Strait of Hormuz','Strait of Gibraltar','Bosporus','Strait of Malacca'],[3,'Tectonic plates pushing together often create…','Mountains','Deserts','Rivers','Lakes']]},
+{id:'history',name:'History',emoji:'🏛️',color:'#9b5de5',qs:[
+[1,'What were the rulers of ancient Egypt called?','Pharaohs','Samurai','Vikings','Knights'],[1,'Before cars, people often travelled by…','Horse and cart','Airplane','Electric scooter','Rocket'],[1,'Who was the first person to walk on the Moon?','Neil Armstrong','Albert Einstein','Isaac Newton','Yuri Gagarin'],[1,'Which long wall in China was built for defense?','The Great Wall','Hadrian\'s Wall','The Berlin Wall','The Wailing Wall'],[1,'What is a museum for?','Keeping and showing historical objects','Selling food','Playing sports','Growing plants'],
+[2,'Which civilization built Machu Picchu?','Inca','Aztec','Maya','Romans'],[2,'Who invented the printing press around 1440?','Johannes Gutenberg','Thomas Edison','Leonardo da Vinci','Galileo'],[2,'In which year did World War II end?','1945','1918','1939','1950'],[2,'The Colosseum is in which city?','Rome','Athens','Paris','Cairo'],[2,'The United Arab Emirates was formed in…','1971','1961','1981','1991'],
+[3,'A major cause of World War I was…','Alliances, militarism and nationalism','The invention of the internet','The fall of Rome','The Moon landing'],[3,'The Industrial Revolution began in…','Britain','Japan','Brazil','India'],[3,'What was the Silk Road?','Trade routes linking East and West','A road paved with silk','A Roman wall','A river in China'],[3,'The House of Wisdom in Baghdad was famous for…','Translating and advancing science and learning','Building warships','Training soldiers','Making silk'],[3,'The Renaissance was a "rebirth" of…','Art, learning and classical ideas','Dinosaurs','Farming only','The Ice Age']]},
+{id:'space',name:'Space',emoji:'🪐',color:'#1f1a5c',qs:[
+[1,'What is the closest star to Earth?','The Sun','Polaris','Sirius','The Moon'],[1,'Which planet do we live on?','Earth','Mars','Venus','Jupiter'],[1,'What shape is Earth (roughly)?','A sphere','A square','A triangle','A cube'],[1,'What do astronauts wear outside the space station?','Spacesuits','Swimsuits','Raincoats','Pajamas'],[1,'Which is called the Red Planet?','Mars','Saturn','Neptune','Mercury'],
+[2,'What is the largest planet in our solar system?','Jupiter','Saturn','Earth','Neptune'],[2,'How long does Earth take to orbit the Sun?','About 365 days','24 hours','30 days','10 years'],[2,'What causes day and night?','Earth spinning on its axis','Earth orbiting the Sun','The Moon blocking the Sun','Clouds'],[2,'Which planet is famous for its big rings?','Saturn','Mars','Venus','Mercury'],[2,'What is a galaxy?','A huge system of stars, gas and dust','A single planet','A type of comet','A space station'],
+[3,'Why does Earth have seasons?','Earth\'s axis is tilted','Earth gets much closer to the Sun','The Sun changes temperature','The Moon\'s gravity'],[3,'A light-year measures…','Distance','Time','Brightness','Speed'],[3,'What is a black hole?','A region where gravity is so strong light can\'t escape','A hole in the Sun','A dark planet','Space with no gravity'],[3,'Which planet spins on its side?','Uranus','Venus','Earth','Mars'],[3,'The Moon\'s phases happen because…','We see different parts of its sunlit half as it orbits','Earth\'s shadow covers it every night','Clouds cover it','The Moon changes shape']]},
+{id:'tech',name:'Coding & Tech',emoji:'💻',color:'#0f9d8a',qs:[
+[1,'Step-by-step instructions for a computer are called…','An algorithm','A sandwich','A drawing','A song'],[1,'Which device do you type with?','Keyboard','Mouse','Speaker','Monitor'],[1,'What does Wi-Fi let you do?','Connect to the internet without cables','Charge your phone','Print photos','Turn on lights'],[1,'A mistake in code is called a…','Bug','Byte','Bot','Blob'],[1,'What is a robot?','A machine that follows instructions to do tasks','A type of plant','A video','A planet'],
+[2,'In coding, a loop is used to…','Repeat instructions','Delete files','Draw circles only','Turn off the computer'],[2,'Which of these is a programming language?','Python','Photoshop','Excel','Chrome'],[2,'What does an "if… then…" block do?','Makes a decision based on a condition','Repeats forever','Saves a file','Plays music'],[2,'Binary code uses only…','0 and 1','1 to 10','Letters A–Z','0 to 9'],[2,'What does AI stand for?','Artificial Intelligence','Automatic Internet','Animated Image','Advanced Input'],
+[3,'What is binary 1010 as a normal (decimal) number?','10','1010','12','8'],[3,'x = 3; x = x * 2; print(x) — what prints?','6','3','9','x'],[3,'A variable in programming is…','A named place to store a value','A broken program','A type of computer','A website'],[3,'Why can AI chatbots make mistakes?','They predict likely answers from patterns and can be wrong','They are always connected to the truth','They never make mistakes','They read your mind'],[3,'What is the main job of a CPU?','Process instructions','Store photos forever','Display images','Cool the computer']]},
+{id:'digital',name:'Online Life & Safety',emoji:'📱',color:'#e63e6d',qs:[
+[1,'A stranger online asks for your address. What do you do?','Don\'t share it and tell a trusted adult','Send it','Send a photo of your house','Ask for theirs'],[1,'A good password is…','Long and hard to guess','Your name','1234','Your pet\'s name'],[1,'If something online makes you feel bad you should…','Tell a trusted adult','Keep it secret','Reply with mean words','Share it with friends'],[1,'Is everything on the internet true?','No','Yes','Only videos','Only on weekends'],[1,'Before downloading a new game you should…','Ask a parent or teacher','Click every pop-up','Give your password','Turn off the screen'],
+[2,'What is cyberbullying?','Being mean to someone using technology','Playing online games','Sending birthday wishes','Watching videos'],[2,'A "phishing" message tries to…','Trick you into giving personal info','Teach you to fish','Fix your computer','Give you a free gift'],[2,'What is a "digital footprint"?','The trail of info you leave online','A shoe-size app','A virus','A type of emoji'],[2,'How can you check if a news story is real?','Compare it with trusted sources','Count the likes','Trust the headline','Check if it\'s funny'],[2,'A pop-up asks you to buy gems in a game. You…','Ask an adult before buying','Tap buy quickly','Type in any card','Share your account'],
+[3,'Why do apps keep showing you similar videos?','Algorithms recommend based on your activity','The phone reads your mind','It\'s random every time','Your friends choose them'],[3,'The best extra protection for an account is…','Two-factor authentication','Same password everywhere','Sharing your password with a best friend','Writing it on your desk'],[3,'A shocking video of a celebrity might be…','A deepfake made with AI','Always real','From the future','Illegal to watch'],[3,'Hours of late-night scrolling can affect your…','Sleep, focus and mood','Nothing at all','Only your battery','Height'],[3,'What does "think before you post" mean?','Posts can be permanent and seen by many','Posts vanish forever','Only friends ever see posts','Typing is slow']]},
+{id:'arabic',name:'Arabic Language',emoji:'🌙',color:'#0e7a5f',qs:[
+[1,'ما جمع كلمة «كتاب»؟','كُتُب','كتابات','كاتب','مكتبة'],[1,'ما عكس كلمة «كبير»؟','صغير','طويل','جميل','سريع'],[1,'كم عدد حروف الهجاء العربية؟','28','26','24','30'],[1,'أيّ كلمة تبدأ بحرف الباء؟','بيت','قلم','شمس','نهر'],[1,'أكمل: ذهبَ الولدُ إلى …','المدرسةِ','يكتبُ','جميلٌ','سريعًا'],
+[2,'ما نوع كلمة «يلعبُ»؟','فعل مضارع','اسم','حرف','فعل ماضٍ'],[2,'ما مفرد كلمة «أشجار»؟','شجرة','شجيرات','أشجر','شجّار'],[2,'في جملة «الشمسُ مشرقةٌ»، ما المبتدأ؟','الشمسُ','مشرقةٌ','الجملة كلها','لا يوجد مبتدأ'],[2,'ما مرادف كلمة «سعيد»؟','فرحان','حزين','غاضب','متعب'],[2,'أيّ كلمة من حروف الجر؟','في','لم','لن','هل'],
+[3,'ما إعراب «الطالبُ» في جملة «نجحَ الطالبُ»؟','فاعل مرفوع','مفعول به منصوب','مبتدأ مرفوع','اسم مجرور'],[3,'ما الأسلوب في جملة «ما أجملَ السماءَ!»؟','تعجّب','استفهام','نداء','نفي'],[3,'ما جمع المؤنث السالم لكلمة «معلّمة»؟','معلّمات','معلّمون','معالم','معلّمين'],[3,'في «كأنّ القمرَ مصباحٌ»، ما نوع الصورة البلاغية؟','تشبيه','طباق','جناس','سجع'],[3,'ما الفعل الماضي من «يكتبُ»؟','كَتَبَ','اكتبْ','كاتب','مكتوب']]}
+];
+
+const TOPIC_BY={};TOPICS.forEach(t=>TOPIC_BY[t.id]=t);
+const TOPIC_OTHER={id:'other',name:'Other',emoji:'✨',color:'#6b6790'};
+function topicOf(id){return TOPIC_BY[id]||TOPIC_OTHER}
+function mkQ(l,q,c,w,ex,pic){const o=shuffle([c,...w]);return{l,q,o,a:o.indexOf(c),ex:ex||'',pic:pic||''}}
+const BUILTIN=TOPICS.map(t=>({id:'b_'+t.id,title:t.name+' Mix',topic:t.id,builtin:true,questions:t.qs.map(([l,q,c,...w])=>mkQ(l,q,c,w,'',t.emoji))}));
+
+/* ================= state & backends ================= */
+const CFG=window.LLP_CONFIG||{};let B=null;
+const S={db:null,user:null,uid:null,sets:[],unsubs:[],game:null,players:{},hits:[],code:null,role:null,view:null,viewName:'',p:null,pool:null,queue:[],cur:null,locked:false,playing:false,htab:'board',openStu:{},imgCache:{},imgPending:{},qr:{},mgTab:'games',sfxOn:true,lang:'en'};
+const FB_V='10.12.2';
+async function firebaseBackend(cfg){
+ const base=`https://www.gstatic.com/firebasejs/${FB_V}/`;
+ const [app,auth,fs]=await Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]);
+ const fa=app.initializeApp(cfg);const A=auth.getAuth(fa);const F=fs.getFirestore(fa);
+ const clean=o=>JSON.parse(JSON.stringify(o));
+ const wrapDoc=s=>({id:s.id,exists:s.exists(),data:()=>s.data()});
+ const wrapQ=qs=>({docs:qs.docs.map(wrapDoc),size:qs.size,empty:qs.empty,docChanges:()=>qs.docChanges().map(c=>({type:c.type,doc:wrapDoc(c.doc)}))});
+ const dref=r=>({id:r.id,path:r.path,get:async()=>wrapDoc(await fs.getDoc(r)),set:d=>fs.setDoc(r,clean(d)),update:d=>fs.updateDoc(r,clean(d)),delete:()=>fs.deleteDoc(r),
+  onSnapshot:(cb,err)=>fs.onSnapshot(r,s=>cb(wrapDoc(s)),e=>err&&err(e)),collection:p=>cref(fs.collection(r,p))});
+ const qref=q=>({where:(f,op,v)=>qref(fs.query(q,fs.where(f,op,v))),limit:n=>qref(fs.query(q,fs.limit(n))),get:async()=>wrapQ(await fs.getDocs(q)),onSnapshot:(cb,err)=>fs.onSnapshot(q,s=>cb(wrapQ(s)),e=>err&&err(e))});
+ const cref=c=>Object.assign(qref(c),{path:c.path,doc:id=>dref(id?fs.doc(c,id):fs.doc(c)),add:async d=>dref(await fs.addDoc(c,clean(d)))});
+ const mapUser=u=>u?{uid:u.uid,name:u.displayName||'',photo:u.photoURL||'',teacher:!u.isAnonymous&&u.providerData.some(p=>p.providerId==='google.com')}:null;
+ return{demo:false,db:{doc:p=>dref(fs.doc(F,p)),collection:p=>cref(fs.collection(F,p))},auth:{
+  onChange:cb=>auth.onAuthStateChanged(A,u=>cb(mapUser(u))),
+  google:async()=>{const p=new auth.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});return mapUser((await auth.signInWithPopup(A,p)).user)},
+  anon:async()=>mapUser((await auth.signInAnonymously(A)).user),
+  signOut:()=>auth.signOut(A),token:async()=>A.currentUser?A.currentUser.getIdToken():null}};
+}
+function localBackend(){ /* demo mode: data lives in this browser; tabs sync with each other */
+ const PFX='llp_demo:';let store={};
+ const load=()=>{const s={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith(PFX)){try{s[k.slice(PFX.length)]=JSON.parse(localStorage.getItem(k))}catch(e){}}}}catch(e){}store=s};load();
+ const subs=new Set();const notify=()=>subs.forEach(f=>{try{f()}catch(e){console.error(e)}});
+ const bc=typeof BroadcastChannel!=='undefined'?new BroadcastChannel('llp_demo'):null;if(bc)bc.onmessage=()=>{load();notify()};
+ window.addEventListener('storage',e=>{if(!e.key||e.key.startsWith(PFX)){load();notify()}});setInterval(()=>{load();notify()},900);
+ const put=(path,val)=>{try{if(val===undefined)localStorage.removeItem(PFX+path);else localStorage.setItem(PFX+path,JSON.stringify(val))}catch(e){}if(val===undefined)delete store[path];else store[path]=val};
+ const changed=()=>{bc&&bc.postMessage(1);setTimeout(notify,0)};
+ const fresh=path=>{try{const v=localStorage.getItem(PFX+path);return v==null?undefined:JSON.parse(v)}catch(e){return undefined}};
+ const parent=p=>p.split('/').slice(0,-1).join('/');const clone=o=>o==null?o:JSON.parse(JSON.stringify(o));
+ const newId=()=>Math.random().toString(36).slice(2,11)+Date.now().toString(36).slice(-5);
+ const setPath=(obj,key,val)=>{const ks=key.split('.');let o=obj;for(let i=0;i<ks.length-1;i++){if(typeof o[ks[i]]!=='object'||o[ks[i]]===null)o[ks[i]]={};o=o[ks[i]]}o[ks[ks.length-1]]=val};
+ const wrap=(path,d)=>({id:path.split('/').pop(),exists:d!==undefined,data:()=>clone(d)});
+ const dref=path=>({id:path.split('/').pop(),path,get:async()=>{store[path]=fresh(path);if(store[path]===undefined)delete store[path];return wrap(path,store[path])},set:async d=>{put(path,clone(d));changed()},
+  update:async d=>{const cur=fresh(path);if(!cur)throw{code:'not-found',message:'No document'};for(const k in d)setPath(cur,k,clone(d[k]));put(path,cur);changed()},
+  delete:async()=>{put(path,undefined);changed()},
+  onSnapshot:cb=>{let last=null;const f=()=>{const j=JSON.stringify(store[path]??null);if(j!==last){last=j;cb(wrap(path,store[path]))}};subs.add(f);setTimeout(f,0);return()=>subs.delete(f)},
+  collection:p=>cref(path+'/'+p)});
+ const qref=(col,filters)=>{filters=filters||[];const run=()=>Object.keys(store).filter(k=>parent(k)===col&&filters.every(([f,op,v])=>op!=='=='||store[k][f]===v)).map(k=>wrap(k,store[k]));
+  return{where:(f,op,v)=>qref(col,filters.concat([[f,op,v]])),limit:()=>qref(col,filters),
+   get:async()=>{const docs=run();return{docs,size:docs.length,empty:!docs.length,docChanges:()=>docs.map(d=>({type:'added',doc:d}))}},
+   onSnapshot:cb=>{let prev=null;const f=()=>{const docs=run();const cur={};docs.forEach(d=>cur[d.id]=JSON.stringify(d.data()));const ch=[];const p0=prev||{};
+     docs.forEach(d=>{if(!(d.id in p0))ch.push({type:'added',doc:d});else if(p0[d.id]!==cur[d.id])ch.push({type:'modified',doc:d})});
+     Object.keys(p0).forEach(id=>{if(!(id in cur))ch.push({type:'removed',doc:wrap(col+'/'+id,JSON.parse(p0[id]))})});
+     if(ch.length||prev===null){prev=cur;cb({docs,size:docs.length,empty:!docs.length,docChanges:()=>ch})}};subs.add(f);setTimeout(f,0);return()=>subs.delete(f)}}};
+ const cref=col=>Object.assign(qref(col),{path:col,doc:id=>dref(col+'/'+(id||newId())),add:async d=>{const r=dref(col+'/'+newId());await r.set(d);return r}});
+ let user=null;try{user=JSON.parse(sessionStorage.getItem('llp_demo_user'))}catch(e){}
+ const aSubs=new Set();const setU=u=>{user=u;try{sessionStorage.setItem('llp_demo_user',JSON.stringify(u))}catch(e){}aSubs.forEach(f=>f(u));return u};
+ return{demo:true,db:{doc:dref,collection:cref},auth:{onChange:cb=>{aSubs.add(cb);setTimeout(()=>cb(user),0);return()=>aSubs.delete(cb)},
+  google:async()=>setU({uid:'t_'+newId(),name:'Demo Teacher',photo:'',teacher:true}),anon:async()=>setU({uid:'s_'+newId(),name:'',photo:'',teacher:false}),
+  signOut:async()=>setU(null),token:async()=>null}};
+}
+async function callAI(body){
+ if(B.demo)throw{message:'AI question-making works after you put the website online (see README). In demo mode, use the Topic library.'};
+ const tok=await B.auth.token();
+ const r=await fetch(CFG.aiEndpoint||'/api/generate',{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+(tok||'')},body:JSON.stringify(body)});
+ let j=null;try{j=await r.json()}catch(e){}
+ if(!r.ok)throw{message:(j&&j.error)||('server error '+r.status)};
+ return j}
+
+/* ================= rendering ================= */
+function go(fn,...args){S.view=()=>fn(...args);S.viewName=fn.name;draw();window.scrollTo(0,0)}
+function draw(){if(!S.view)return;$('#app').innerHTML=S.view();hydrateImgs();const a=S.after;S.after=null;a&&a()}
+let rrq=0;function rerender(){if(rrq)return;rrq=requestAnimationFrame(()=>{rrq=0;draw()})}
+const spinner='<span class="spin"></span>';
+function loadingBox(t){return `<div class="card center" style="margin-top:40px">${spinner} <b>${esc(t)}</b></div>`}
+function nm(p){return p&&p.nick||'Player'}
+function writeErr(e){const c=e&&e.code||'';
+ if(/permission/.test(c))toast('Not allowed — sign in again, or this belongs to another teacher.',4000);
+ else if(/resource-exhausted|quota/.test(c))toast('The free daily limit was reached. Try again tomorrow or upgrade Firebase.',5000);
+ else toast('Could not save: '+((e&&e.message)||'try again'),4000)}
+function hydrateImgs(){document.querySelectorAll('img[data-img]').forEach(el=>{const id=el.getAttribute('data-img');if(S.imgCache[id])el.src=S.imgCache[id];else loadImg(id)})}
+function loadImg(id){if(!id||S.imgCache[id]||S.imgPending[id])return;S.imgPending[id]=1;S.db.doc('images/'+id).get().then(d=>{const u=d.exists&&safeImg(d.data().data);if(u){S.imgCache[id]=u;document.querySelectorAll(`img[data-img="${id}"]`).forEach(i=>i.src=u)}}).catch(()=>{}).finally(()=>{delete S.imgPending[id]})}
+function qMedia(q){if(q.imgData&&safeImg(q.imgData))return `<div class="qmedia"><img src="${safeImg(q.imgData)}" alt=""></div>`;if(q.img)return `<div class="qmedia"><img data-img="${esc(q.img)}" alt=""></div>`;if(q.pic)return `<div class="qmedia"><div class="qpic nt">${esc(q.pic)}</div></div>`;return ''}
+function qThumb(q){if(q.imgData&&safeImg(q.imgData))return `<img class="thumb" src="${safeImg(q.imgData)}" alt="">`;if(q.img)return `<img class="thumb" data-img="${esc(q.img)}" alt="">`;return `<div class="thumbpic nt">${esc(q.pic||'❓')}</div>`}
+
+/* ================= auth ================= */
+function gbtn(){return `<button class="gbtn" onclick="signInGoogle()">${GLOGO}<span>Continue with Google</span></button>`}
+function setUser(u){S.user=u;S.uid=u?u.uid:null;chip();if(u&&u.teacher)subscribeSets()}
+async function signInGoogle(){try{const u=await B.auth.google();setUser(u);const f=S.afterLogin;S.afterLogin=null;if(f)f();else home()}
+ catch(e){const c=e&&e.code||'';if(/popup-closed|cancelled-popup/.test(c))return;toast(/popup-blocked/.test(c)?'Allow pop-ups for this site, then try again.':/unauthorized-domain/.test(c)?'This website address is not allowed in Firebase yet (README step 4).':/operation-not-allowed/.test(c)?'Turn on Google sign-in in Firebase (README step 2).':'Sign-in failed: '+((e&&e.message)||'try again'),5000)}}
+async function signOutUser(){leaveGame();try{await B.auth.signOut()}catch(e){}if(S.setsUnsub){S.setsUnsub();S.setsUnsub=null}S.sets=[];setUser(null);home()}
+function requireTeacher(fn){if(S.user&&S.user.teacher)return fn();S.afterLogin=fn;go(teacherLoginView)}
+function teacherLoginView(){return `<div class="card center" style="max-width:560px;margin:30px auto"><div style="font-size:60px">🧑‍🏫</div><h2>Teachers, sign in</h2><p class="muted" style="font-weight:800">Sign in to make games, host them and see every answer. Students don't need an account — they join with a code and their name.</p><div style="margin-top:14px">${gbtn()}</div></div>`}
+function chip(){const u=S.user;$('#chip').innerHTML=u&&u.teacher?`<div class="chip">${u.photo?`<img src="${esc(u.photo)}" alt="" referrerpolicy="no-referrer">`:'<span style="font-size:22px">🧑‍🏫</span>'}<span class="nt">${esc((u.name||'Teacher').split(' ')[0])}</span><span class="link" style="color:#fff;font-size:12px" onclick="signOutUser()">Sign out</span></div>`:''}
+function subscribeSets(){if(S.setsUnsub)return;S.setsUnsub=S.db.collection('sets').onSnapshot(snap=>{S.sets=snap.docs.map(d=>Object.assign({id:d.id},d.data())).filter(s=>Array.isArray(s.questions));if(['libraryView','topicView','setView','myGamesView'].includes(S.viewName))rerender()},()=>{})}
+
+/* ================= boot ================= */
+async function boot(){
+ S.lang=LS.get('llp_lang')||((navigator.language||'').toLowerCase().startsWith('ar')?'ar':'en');applyLang();
+ $('#app').innerHTML=loadingBox('Loading…');
+ const cfg=CFG.firebase||{};const live=cfg.apiKey&&!/PASTE/i.test(cfg.apiKey);
+ try{B=live?await firebaseBackend(cfg):localBackend()}catch(e){$('#app').innerHTML=`<div class="card empty">Could not start: ${esc(e.message||e)}</div>`;return}
+ S.db=B.db;if(B.demo)$('#demo').style.display='block';
+ let first=true;
+ B.auth.onChange(u=>{setUser(u);if(first){first=false;route()}else if(S.viewName==='homeView')draw()});
+ setInterval(tick,500)}
+function route(){const q=new URLSearchParams(location.search);const code=(q.get('code')||'').replace(/\D/g,'');if(code.length===6){history.replaceState(null,'',location.pathname);return joinCode(code)}home()}
+function gameLink(code){return location.href.split(/[?#]/)[0]+'?code='+code}
+
+/* ================= home ================= */
+function home(){leaveGame();go(homeView)}
+function homeView(){const t=S.user&&S.user.teacher;const last=LS.get('llp_last');
+ const join=`<div class="card"><h2>🎮 Join a Game</h2><p class="muted" style="font-weight:800">Enter the code from your teacher. No account needed!</p>
+  <div class="row"><input id="jcode" inputmode="numeric" maxlength="6" placeholder="Game code" style="flex:1;font-size:24px;text-align:center;letter-spacing:4px" onkeydown="if(event.key==='Enter')joinCode()"><button class="btn g big" onclick="joinCode()">Join</button></div></div>`;
+ const teach=t?`<div class="card"><h2>🧑‍🏫 Teacher</h2><p class="muted" style="font-weight:800">Make a game from your lesson, post it, share the code and watch every answer live.</p>
+  <div class="row"><button class="btn p big" onclick="go(createView)">✨ Make a game with AI</button><button class="btn" onclick="go(libraryView)">📚 Topic library</button><button class="btn ghost" onclick="openMyGames()">📊 My games</button></div></div>`
+  :`<div class="card"><h2>🧑‍🏫 Teachers</h2><p class="muted" style="font-weight:800">Sign in to make games from your lessons, host them and see every answer live.</p><div style="margin-top:10px">${gbtn()}</div></div>`;
+ return `<div class="hero"><h1><span class="float">🎮</span> Let's <span class="y">Learn</span> And <span class="p">Play</span></h1><p>Quizzes + epic game modes. Learn it, then play it. 🔥</p></div>
+ ${last&&last.code&&(last.role!=='host'||t)?`<div class="banner">Still in game <b>${esc(last.code)}</b>? <span class="link" onclick="${last.role==='host'?`hostGame('${esc(last.code)}')`:`joinCode('${esc(last.code)}')`}">Jump back in →</span> <span class="link" style="margin-inline-start:10px;color:#6b4b00" onclick="LS.set('llp_last',null);draw()">dismiss</span></div>`:''}
+ <div class="grid g2">${join+teach}</div>
+ ${t?`<div class="sec-title">⚡ Make & explore</div><div class="grid g3">
+  <div class="tile" style="background:linear-gradient(135deg,#7c3aed,#ff4d8d)" onclick="go(createView)"><div class="em">🤖</div><h3>Lesson → Game with AI</h3><small>Upload your PowerPoint or PDF. Get a game with pictures and 3 levels.</small></div>
+  <div class="tile" style="background:linear-gradient(135deg,#3a86ff,#10c98f)" onclick="go(libraryView)"><div class="em">📚</div><h3>Topic Library</h3><small>Ready-to-play topics + games made by teachers.</small></div>
+  <div class="tile" style="background:linear-gradient(135deg,#ff8c42,#ffc93c)" onclick="openMyGames()"><div class="em">🔁</div><h3>My games</h3><small>See reports, get links and host your games again.</small></div></div>`:''}`}
+
+/* ================= library ================= */
+function allSets(){return BUILTIN.concat(S.sets)}
+function getSet(id){return allSets().find(s=>s.id===id)}
+function lvCounts(qs){const c={1:0,2:0,3:0};qs.forEach(q=>c[q.l]=(c[q.l]||0)+1);return c}
+function libraryView(){if(!S.user||!S.user.teacher)return teacherLoginView();
+ const counts={};S.sets.forEach(s=>{const k=TOPIC_BY[s.topic]?s.topic:'other';counts[k]=(counts[k]||0)+1});
+ const tl=TOPICS.concat(counts.other?[TOPIC_OTHER]:[]);
+ return `<div class="sec-title">📚 Pick a topic</div>
+ <div class="grid g4">${tl.map(t=>`<div class="tile" style="background:${t.color}" onclick="go(topicView,'${t.id}')"><div class="em">${t.emoji}</div><h3>${esc(t.name)}</h3><small>${t.id==='other'?'':'1 ready-made game'}${counts[t.id]?` · ${counts[t.id]} by teachers`:''}</small></div>`).join('')}
+  <div class="tile" style="background:linear-gradient(135deg,#7c3aed,#ff4d8d)" onclick="go(createView)"><div class="em">🤖</div><h3>New from a lesson</h3><small>AI-made, with pictures</small></div></div>`}
+function topicView(tid){const t=topicOf(tid);const sets=allSets().filter(s=>(TOPIC_BY[s.topic]?s.topic:'other')===tid);
+ return `<div class="sec-title"><span class="link" style="color:#fff" onclick="go(libraryView)">← Topics</span> ${t.emoji} ${esc(t.name)}</div>
+ <div class="grid g2">${sets.map(setCard).join('')||'<div class="card empty">No games yet.</div>'}
+ <div class="card center" style="display:flex;flex-direction:column;justify-content:center"><div style="font-size:40px">🤖</div><h3>Make your own</h3><p class="muted">Upload your lesson and get a game in seconds.</p><button class="btn p" onclick="S.aiTopic='${t.id}';go(createView)">Make with AI</button></div></div>`}
+function setCard(s){const c=lvCounts(s.questions);return `<div class="card"><div class="row" style="justify-content:space-between"><h3>${esc(s.title)}</h3>${s.builtin?'<span class="tag">Ready-made</span>':s.ownerId===S.uid?'<span class="tag ga">Mine</span>':'<span class="tag wg">By a teacher</span>'}</div>
+ <p class="muted" style="font-weight:800;margin:6px 0">${s.questions.length} questions · <span class="lv lv1">L1 ${c[1]}</span> <span class="lv lv2">L2 ${c[2]}</span> <span class="lv lv3">L3 ${c[3]}</span>${s.ownerName&&s.ownerId!==S.uid?` · by <span class="nt">${esc(s.ownerName)}</span>`:''}</p>
+ <div class="row"><button class="btn g" onclick="hostWith('${s.id}')">▶ Host</button><button class="btn ghost sm" onclick="go(setView,'${s.id}')">Preview</button></div></div>`}
+function setView(id){const s=getSet(id);if(!s)return `<div class="card empty">This game was removed. <span class="link" onclick="go(libraryView)">Back</span></div>`;
+ return `<div class="sec-title"><span class="link" style="color:#fff" onclick="go(topicView,'${TOPIC_BY[s.topic]?s.topic:'other'}')">← Back</span> ${esc(s.title)}</div>
+ <div class="card"><div class="row"><button class="btn g big" onclick="hostWith('${s.id}')">▶ Host this game</button>${s.ownerId===S.uid?`<button class="btn" onclick="editSet('${s.id}')">✏️ Edit</button>`:''}<button class="btn b" id="trbtn" onclick="translateSet('${s.id}')">🌐 Translate to Arabic</button>${s.ownerId===S.uid?`<button class="btn r sm" onclick="deleteSet('${s.id}')">Delete</button>`:''}</div></div>
+ <div class="card qlist">${qListHTML(s.questions,false)}</div>`}
+function qListHTML(qs,editable){return [1,2,3].map(l=>{const list=qs.map((q,i)=>[q,i]).filter(([q])=>q.l===l);return `<h3 style="margin:14px 0 8px">${LEVELS[l].em} Level ${l} — ${LEVELS[l].name} <small class="muted" style="font-family:Nunito">(${list.length})</small></h3>`+(list.map(([q,i])=>`<div class="qi">${qThumb(q)}<div class="t nt"><b>${esc(q.q)}</b><div>${q.o.map((o,j)=>`<span class="opt ${j===q.a?'ok':''}">${j===q.a?'✓ ':''}${esc(o)}</span>`).join('')}</div>${q.ex?`<div class="muted" style="font-size:13px;margin-top:4px">💡 ${esc(q.ex)}</div>`:''}</div>
+  ${editable?`<div class="qtools"><input class="emo nt" value="${esc(q.pic||'')}" maxlength="12" title="Emoji picture" oninput="S.aiSet.questions[${i}].pic=this.value"><label class="btn ghost sm" style="margin:0;text-transform:none;letter-spacing:0">🖼️ Picture<input type="file" accept="image/*" style="display:none" onchange="setQImg(${i},this)"></label>${q.img||q.imgData?`<button class="btn ghost sm" onclick="removeQImg(${i})">No picture</button>`:''}<button class="x" title="Delete question" onclick="S.aiSet.questions.splice(${i},1);draw()">✕</button></div>`:''}</div>`).join('')||'<div class="muted">No questions at this level.</div>')}).join('')}
+async function setQImg(i,inp){const f=inp.files&&inp.files[0];if(!f)return;try{const b=await toJpeg(f,640,.78);const u=await blobToDataURL(b);if(u.length>850000)return toast('That picture is too big — try another one.');const q=S.aiSet.questions[i];q.imgData=u;q.img=null;draw()}catch(e){toast('Could not use that picture.')}}
+function removeQImg(i){const q=S.aiSet.questions[i];q.imgData=null;q.img=null;draw()}
+function editSet(id){const s=getSet(id);if(!s)return;S.aiSet=JSON.parse(JSON.stringify(s));go(aiPreviewView)}
+async function deleteSet(id){try{await S.db.doc('sets/'+id).delete();S.sets=S.sets.filter(s=>s.id!==id);toast('Deleted');go(libraryView)}catch(e){writeErr(e)}}
+
+/* ================= make a game with AI ================= */
+function createView(){if(!S.user||!S.user.teacher)return teacherLoginView();const f=S.aiForm||{};return `<div class="sec-title">🤖 Turn your lesson into a game</div>
+ <div class="card">
+  <div class="card dropz" style="background:#f6f3ff;box-shadow:none;border:2.5px dashed #cfc3f5;padding:16px;margin:0" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="event.preventDefault();this.classList.remove('over');handleLessonFiles(event.dataTransfer.files)">
+   <div class="row"><span style="font-size:30px">📂</span><div style="flex:1;min-width:220px"><b>Upload your lesson — any file</b><div class="muted" style="font-size:13px;font-weight:700">PowerPoint, PDF, Word, Excel, pictures (JPG, PNG, screenshots…) or text. Add several files at once, drag them here, or paste a screenshot (Ctrl+V).</div></div>
+   <label class="btn b sm" style="margin:0;color:#fff;text-transform:none;letter-spacing:0;font-size:14px">Choose files<input type="file" multiple style="display:none" onchange="handleLessonFiles(this.files);this.value=''"></label></div>
+   <div id="pdfbox" style="margin-top:8px">${pdfBoxHTML()}</div></div>
+  <label>…or type / paste your lesson</label>
+  <textarea id="ai_lesson" placeholder="Paste the lesson or describe the topic… e.g. 'The water cycle: evaporation, condensation, precipitation, collection'">${esc(f.lesson||'')}</textarea>
+  <div class="grid g3" style="gap:12px">
+   <div><label>Title (optional)</label><input id="ai_title" value="${esc(f.title||'')}" placeholder="e.g. The Water Cycle"></div>
+   <div><label>Topic</label><select id="ai_topic"><option value="auto" ${!(f.topic||S.aiTopic)||(f.topic||S.aiTopic)==='auto'?'selected':''}>🔎 Detect from lesson</option>${TOPICS.concat([TOPIC_OTHER]).map(t=>`<option value="${t.id}" ${(f.topic||S.aiTopic)===t.id?'selected':''}>${t.emoji} ${esc(t.name)}</option>`).join('')}</select></div>
+   <div><label>Grade</label><select id="ai_grade">${['Grades K–2','Grades 3–5','Grades 6–8','Grades 9–12'].map(g=>`<option ${f.grade===g?'selected':''}>${g}</option>`).join('')}</select></div>
+   <div><label>Questions per level</label><select id="ai_n">${[3,5,8,10].map(n=>`<option ${(f.n||5)==n?'selected':''}>${n}</option>`).join('')}</select></div>
+   <div><label>Question language</label><select id="ai_lang">${[['auto','Same as the lesson'],['en','English'],['ar','العربية (Arabic)']].map(([v,t])=>`<option value="${v}" ${(f.lang||(S.lang==='ar'?'ar':'auto'))===v?'selected':''}>${t}</option>`).join('')}</select></div>
+  </div>
+  <div class="grid g3" style="gap:10px;margin-top:14px">${[1,2,3].map(l=>`<div class="stat" style="text-align:start"><b style="font-size:20px">${LEVELS[l].em} L${l} · ${LEVELS[l].name}</b><span style="text-transform:none">${['Simple words, recall & recognition, hints in the question.','On-grade understanding & applying the idea.','Analysis, multi-step reasoning & "why" questions.'][l-1]}</span></div>`).join('')}</div>
+  <div style="margin-top:18px"><button class="btn p big" id="ai_btn" onclick="generateAI()">✨ Make my game</button></div>
+ </div>`}
+function readAiForm(){S.aiForm={title:$('#ai_title').value.trim(),topic:$('#ai_topic').value,grade:$('#ai_grade').value,lesson:$('#ai_lesson').value,n:+$('#ai_n').value,lang:$('#ai_lang').value};return S.aiForm}
+/* lesson files: PDF (pdf.js) and PowerPoint (.pptx = zip of XML), read in the browser */
+const PDFJS='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';let pdfjsP=null,jszipP=null;
+function loadPdfJs(){if(!pdfjsP)pdfjsP=loadScript(PDFJS+'pdf.min.js').then(()=>{const L=window.pdfjsLib||window['pdfjs-dist/build/pdf'];if(!L)throw new Error('PDF reader unavailable');L.GlobalWorkerOptions.workerSrc=PDFJS+'pdf.worker.min.js';return L}).catch(e=>{pdfjsP=null;throw e});return pdfjsP}
+function loadJsZip(){if(!jszipP)jszipP=loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js').then(()=>{if(!window.JSZip)throw new Error('PowerPoint reader unavailable');return window.JSZip}).catch(e=>{jszipP=null;throw e});return jszipP}
+const KIND_EM={pptx:'📽️',pdf:'📄',docx:'📝',xlsx:'📊',image:'🖼️',text:'📃'};
+function fileKindOf(f){const n=(f.name||'').toLowerCase(),t=f.type||'';
+ if(/\.pptx$/.test(n)||/presentationml/.test(t))return 'pptx';if(/\.pdf$/.test(n)||t==='application/pdf')return 'pdf';
+ if(/\.docx$/.test(n)||/wordprocessingml/.test(t))return 'docx';if(/\.xlsx$/.test(n)||/spreadsheetml/.test(t))return 'xlsx';
+ if(/\.(ppt|doc|xls)$/.test(n))return 'old';if(/\.(heic|heif)$/.test(n)||/heic|heif/.test(t))return 'heic';
+ if(/^image\//.test(t)||/\.(jpe?g|png|webp|gif|bmp|avif)$/.test(n))return 'image';
+ if(/^text\//.test(t)||/\.(txt|md|csv|json|html?|rtf|xml)$/.test(n))return 'text';return 'unknown'}
+function mergeFiles(){const fs=S.lessonFiles||[];if(!fs.length){S.lessonPdf=null;return}
+ const imgs=[];fs.forEach(f=>f.images.forEach(b=>imgs.push(b)));const cap=10;
+ const images=imgs.length<=cap?imgs:Array.from({length:cap},(_,k)=>imgs[Math.round(k*(imgs.length-1)/(cap-1))]);
+ S.lessonPdf={kind:fs.every(f=>f.kind==='pptx')?'pptx':(fs.length===1&&fs[0].kind==='pdf'?'pdf':'files'),name:fs.map(f=>f.name).join(', ').slice(0,200),pages:fs.reduce((s,f)=>s+(f.pages||1),0),
+  text:fs.map(f=>f.text?`=== ${f.name} ===\n${f.text}`:'').filter(Boolean).join('\n\n').slice(0,40000),images,notes:fs.some(f=>f.notes)}}
+function pdfBoxHTML(){const fs=S.lessonFiles||[];let h=fs.map((d,i)=>`<div class="row filerow"><span>${KIND_EM[d.kind]||'📎'} <span class="nt">${esc(d.name)}</span> · ${d.kind==='image'?'picture':`${d.pages} ${d.kind==='pptx'?(d.pages===1?'slide':'slides'):(d.pages===1?'page':'pages')}`}${d.text.length>40?' · text ✓':''}${d.notes?' · speaker notes ✓':''}${d.images.length&&d.kind!=='image'?` · ${d.images.length} pictures`:''}</span><button class="x" style="margin-inline-start:auto" title="Remove" onclick="removeLessonFile(${i})">✕</button></div>`).join('');
+ if(S.pdfBusy)h+=`<div class="muted" style="font-weight:800;margin-top:6px">${spinner} <span id="pdfprog">Reading your file…</span></div>`;return h}
+function refreshFileBox(){const b=$('#pdfbox');if(b)b.innerHTML=pdfBoxHTML()}
+function removeLessonFile(i){S.lessonFiles.splice(i,1);mergeFiles();refreshFileBox()}
+function pdfProg(t){const e=$('#pdfprog');if(e)e.textContent=t}
+async function handleLessonFiles(list){const files=Array.from(list||[]);if(!files.length)return;if(S.pdfBusy)return toast('Still reading your file — one moment 📄');
+ S.lessonFiles=S.lessonFiles||[];if(S.lessonFiles.length+files.length>10)return toast('Up to 10 files at a time');
+ S.pdfBusy=true;refreshFileBox();
+ let okN=0;for(const f of files){try{const d=await readLessonFile(f);if(d){S.lessonFiles.push(d);okN++}}catch(e){toast(`Couldn't read ${f.name||'that file'}: ${(e&&e.message)||'try another file'}`,5500)}}
+ if(okN)toast(okN===1?'✅ Your file is ready':`✅ ${okN} files ready`);
+ S.pdfBusy=false;mergeFiles();refreshFileBox()}
+function handleLessonFile(f){return handleLessonFiles([f])}
+async function readLessonFile(f){const k=fileKindOf(f);
+ if(k==='old'){modal(`<h2>📁 Old file type</h2><p><b>${esc(f.name)}</b> is an old Office file (.ppt, .doc or .xls). Open it in PowerPoint, Word or Excel and choose <b>File → Save As</b> → the new format (<b>.pptx</b>, <b>.docx</b> or <b>.xlsx</b>), or save it as <b>PDF</b>, then upload that.</p><button class="btn" onclick="closeModal()">OK</button>`);return null}
+ if(k==='heic')throw new Error('iPhone HEIC photos need to be JPG — on the iPhone choose Settings → Camera → Formats → Most Compatible, or send yourself a screenshot');
+ if(f.size>100*1024*1024)throw new Error('the file is over 100 MB');
+ if(k==='pptx')return readPptx(f);if(k==='pdf')return readPdf(f);if(k==='docx')return readDocx(f);if(k==='xlsx')return readXlsx(f);
+ if(k==='image'){pdfProg('Preparing pictures…');const b=await toJpeg(f,1000,.8);return{kind:'image',name:f.name||'picture.jpg',pages:1,text:'',images:[b]}}
+ if(k==='text'){if(f.size>3e6)throw new Error('the text file is too big');let t=await f.text();if(/\.html?$/i.test(f.name)||/^\s*</.test(t))t=new DOMParser().parseFromString(t.replace(/<\/(p|div|h\d|li|tr|td|section|article)>|<br\s*\/?>/gi,m=>m+'\n'),'text/html').body.textContent||'';if(/\.rtf$/i.test(f.name))t=t.replace(/\\[a-z]+-?\d* ?|[{}]/gi,' ');return{kind:'text',name:f.name,pages:1,text:t.replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim().slice(0,30000),images:[]}}
+ const t=await f.slice(0,200000).text();if(!t.trim()||/[\x00-\x08\x0E-\x1F]/.test(t.slice(0,2000)))throw new Error("this kind of file can't be read — use PowerPoint, PDF, Word, Excel, a picture or a text file");
+ return{kind:'text',name:f.name,pages:1,text:t.slice(0,30000),images:[]}}
+function pickEven(list,cap){return list.length<=cap?list:Array.from({length:cap},(_,k)=>list[Math.round(k*(list.length-1)/(cap-1))])}
+async function zipPictures(zip,paths,cap){const cands=[];for(const mp of paths){const u8=await zip.file(mp).async('uint8array');if(u8.length<15000)continue;const ext=mp.split('.').pop().toLowerCase();cands.push(new Blob([u8],{type:ext==='png'?'image/png':ext==='gif'?'image/gif':ext==='webp'?'image/webp':'image/jpeg'}))}
+ const out=[];const sel=pickEven(cands,cap);for(let k=0;k<sel.length;k++){pdfProg(`Preparing pictures… ${k+1}/${sel.length}`);try{const b=await toJpeg(sel[k],1000,.78);if(b)out.push(b)}catch(e){}}return out}
+async function readPdf(f){const L=await loadPdfJs();const doc=await L.getDocument({data:new Uint8Array(await f.arrayBuffer()),isEvalSupported:false,useSystemFonts:true}).promise;
+ const n=doc.numPages,maxP=Math.min(n,80);const parts=[];
+ for(let i=1;i<=maxP;i++){pdfProg(`Reading your file… ${i}/${n}`);const pg=await doc.getPage(i);const tc=await pg.getTextContent();const t=tc.items.map(x=>x.str).join(' ').replace(/\s+/g,' ').trim();if(t)parts.push(`[Page ${i}] ${t}`)}
+ const text=parts.join('\n').slice(0,40000);const sel=pickEven(Array.from({length:n},(_,i)=>i+1),text.length>1500?6:8);const images=[];
+ for(let k=0;k<sel.length;k++){pdfProg(`Preparing pictures… ${k+1}/${sel.length}`);try{const pg=await doc.getPage(sel[k]);const v1=pg.getViewport({scale:1});const vp=pg.getViewport({scale:Math.min(2,1000/v1.width)});const c=document.createElement('canvas');c.width=Math.ceil(vp.width);c.height=Math.ceil(vp.height);const ctx=c.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,c.width,c.height);await pg.render({canvasContext:ctx,viewport:vp}).promise;const b=await new Promise(r=>c.toBlob(r,'image/jpeg',.78));if(b)images.push(b)}catch(e){}}
+ if(!text&&!images.length)throw new Error('no readable text or pages');return{kind:'pdf',name:f.name,pages:n,text,images}}
+function xmlParas(xml,pTag,tTag){pTag=pTag||'a:p';tTag=tTag||'a:t';const d=new DOMParser().parseFromString(xml,'application/xml');const out=[];const ps=d.getElementsByTagName(pTag);for(let i=0;i<ps.length;i++){const ts=ps[i].getElementsByTagName(tTag);let s='';for(let j=0;j<ts.length;j++)s+=ts[j].textContent;s=s.replace(/\s+/g,' ').trim();if(s)out.push(s)}return out}
+function relTargets(xml){const out=[];const re=/<Relationship\b[^>]*>/g;let m;while((m=re.exec(xml))){const tag=m[0];const t=(tag.match(/Target="([^"]+)"/)||[])[1];const ty=(tag.match(/Type="([^"]+)"/)||[])[1]||'';const id=(tag.match(/Id="([^"]+)"/)||[])[1];if(t)out.push({id,t,ty})}return out}
+function resolvePath(base,t){if(t.startsWith('/'))return t.slice(1);const parts=base.split('/');parts.pop();for(const seg of t.split('/')){if(seg==='..')parts.pop();else if(seg!=='.')parts.push(seg)}return parts.join('/')}
+async function readPptx(f){const JSZip=await loadJsZip();const zip=await JSZip.loadAsync(await f.arrayBuffer());let slides=[];
+ try{const pres=await zip.file('ppt/presentation.xml').async('string');const rels=relTargets(await zip.file('ppt/_rels/presentation.xml.rels').async('string'));const byId={};rels.forEach(r=>byId[r.id]=resolvePath('ppt/presentation.xml',r.t));
+  const re=/<p:sldId\b[^>]*r:id="([^"]+)"/g;let m;while((m=re.exec(pres)))if(byId[m[1]]&&zip.file(byId[m[1]]))slides.push(byId[m[1]])}catch(e){}
+ if(!slides.length)slides=Object.keys(zip.files).filter(k=>/^ppt\/slides\/slide\d+\.xml$/.test(k)).sort((a,b)=>parseInt(a.match(/(\d+)\.xml/)[1])-parseInt(b.match(/(\d+)\.xml/)[1]));
+ if(!slides.length)throw new Error('no slides found in this file');
+ const parts=[];const media=[];let notesFound=false;
+ for(let i=0;i<slides.length;i++){pdfProg(`Reading your file… ${i+1}/${slides.length}`);const sp=slides[i];const lines=xmlParas(await zip.file(sp).async('string'));let notes=[];
+  const relF=zip.file(sp.replace(/slides\/(slide\d+\.xml)$/,'slides/_rels/$1.rels'));
+  if(relF)for(const r of relTargets(await relF.async('string'))){const tp=resolvePath(sp,r.t);if(/notesSlide/.test(r.ty)&&zip.file(tp))notes=xmlParas(await zip.file(tp).async('string')).filter(s=>!/^\d+$/.test(s));else if(/\/image$/.test(r.ty)&&/\.(png|jpe?g|gif|webp)$/i.test(tp)&&zip.file(tp)&&!media.includes(tp))media.push(tp)}
+  if(notes.length)notesFound=true;
+  if(lines.length||notes.length)parts.push(`[Slide ${i+1}] ${lines.join(' | ')}${notes.length?`\n   (Speaker notes: ${notes.join(' ')})`:''}`)}
+ const text=parts.join('\n').slice(0,40000);const images=await zipPictures(zip,media,text.length>1500?6:8);
+ if(!text&&!images.length)throw new Error('no text or pictures found on the slides');return{kind:'pptx',name:f.name,pages:slides.length,text,images,notes:notesFound}}
+async function readDocx(f){const JSZip=await loadJsZip();const zip=await JSZip.loadAsync(await f.arrayBuffer());const doc=zip.file('word/document.xml');if(!doc)throw new Error('this Word file looks damaged');
+ pdfProg('Reading your file…');const paras=xmlParas(await doc.async('string'),'w:p','w:t');const text=paras.join('\n').slice(0,40000);
+ const media=Object.keys(zip.files).filter(k=>/^word\/media\/.+\.(png|jpe?g|gif|webp)$/i.test(k));const images=await zipPictures(zip,media,text.length>1500?6:8);
+ if(!text&&!images.length)throw new Error('no text or pictures found');return{kind:'docx',name:f.name,pages:Math.max(1,Math.round(text.length/2500)),text,images}}
+async function readXlsx(f){const JSZip=await loadJsZip();const zip=await JSZip.loadAsync(await f.arrayBuffer());pdfProg('Reading your file…');let cells=[];
+ const ss=zip.file('xl/sharedStrings.xml');if(ss){const d=new DOMParser().parseFromString(await ss.async('string'),'application/xml');const sis=d.getElementsByTagName('si');for(let i=0;i<sis.length;i++){const s=sis[i].textContent.replace(/\s+/g,' ').trim();if(s)cells.push(s)}}
+ for(const k of Object.keys(zip.files).filter(k=>/^xl\/worksheets\/sheet\d+\.xml$/.test(k))){const x=await zip.file(k).async('string');const re=/<is>[\s\S]*?<\/is>|<v>([^<]*)<\/v>/g;let m;while((m=re.exec(x))){const v=m[1]!==undefined?m[1]:m[0].replace(/<[^>]+>/g,'');if(v&&isNaN(+v))cells.push(v.trim())}}
+ const text=[...new Set(cells)].join(' | ').slice(0,40000);const media=Object.keys(zip.files).filter(k=>/^xl\/media\/.+\.(png|jpe?g|gif|webp)$/i.test(k));const images=await zipPictures(zip,media,6);
+ if(!text&&!images.length)throw new Error('no text found in this spreadsheet');return{kind:'xlsx',name:f.name,pages:1,text,images}}
+document.addEventListener('paste',e=>{if(S.viewName!=='createView')return;const items=[...((e.clipboardData&&e.clipboardData.files)||[])].filter(x=>/^image\//.test(x.type));if(!items.length)return;e.preventDefault();handleLessonFiles(items.map((b,i)=>new File([b],`pasted-picture-${Date.now()}${i?'-'+i:''}.png`,{type:b.type})))});
+const MAKING=['🎮','🧠','✨','🚀','🎨','🏆','🎲','💡'];
+function makingView(){return `<div class="card making" style="max-width:620px;margin:30px auto"><div class="big" id="mkem">🎮</div><h2 style="margin-top:10px">Making your game…</h2><p class="muted" style="font-weight:800">Writing questions at 3 levels and picking pictures. Usually 20–40 seconds.</p><div class="tbar"><i id="mkbar" style="width:5%;transition:width 1s linear"></i></div></div>`}
+async function generateAI(){
+ const f=readAiForm();if(S.pdfBusy)return toast('Still reading your file — one moment 📄');mergeFiles();const pdf=S.lessonPdf;
+ if(f.lesson.trim().length<15&&!pdf)return toast('Upload your lesson or type a topic first ✍️');
+ go(makingView);let k=0;const iv=setInterval(()=>{k++;const e=$('#mkem');if(e)e.textContent=MAKING[k%MAKING.length];const b=$('#mkbar');if(b)b.style.width=Math.min(95,5+k*2.4)+'%'},1000);
+ try{
+  const imgs=[];let total=0;for(const b of (pdf?pdf.images:[])){const d=(await blobToDataURL(b)).split(',')[1];if(total+d.length>1800000)break;total+=d.length;imgs.push(d)}
+  const out=await callAI({kind:'lesson',lesson:f.lesson.slice(0,30000),file:pdf?{name:pdf.name,kind:pdf.kind,pages:pdf.pages,text:pdf.text}:null,grade:f.grade,n:f.n,lang:f.lang,images:imgs});
+  const qs=[];
+  for(const r of (out&&out.questions)||[]){
+   if(!r||typeof r.q!=='string'||!Array.isArray(r.options))continue;
+   const opts=r.options.map(x=>String(x)).filter(Boolean).slice(0,4);const ai=Number.isInteger(r.answer)?r.answer:parseInt(r.answer,10);
+   if(opts.length<2||!(ai>=0&&ai<opts.length))continue;
+   const q=mkQ([1,2,3].includes(+r.level)?+r.level:2,r.q.slice(0,300),opts[ai],opts.filter((_,j)=>j!==ai),String(r.explanation||'').slice(0,300),String(r.pic||'').slice(0,12));
+   const ii=parseInt(r.image,10);if(ii>=1&&pdf&&pdf.images[ii-1]&&ii<=imgs.length){try{q.imgData=await blobToDataURL(await toJpeg(pdf.images[ii-1],640,.75))}catch(e){}}
+   qs.push(q)}
+  if(!qs.length)throw{message:'no usable questions came back — try again'};
+  const tp=f.topic==='auto'?(TOPIC_BY[out.topic]?out.topic:'other'):f.topic;
+  S.aiSet={title:f.title||(out&&out.title)||(pdf?pdf.name.split(',')[0].replace(/\.[a-z0-9]+$/i,''):'My Lesson'),topic:tp,grade:f.grade,questions:qs};
+  clearInterval(iv);confetti(20);go(aiPreviewView);
+ }catch(e){clearInterval(iv);go(createView);toast('😕 Could not make the game: '+((e&&e.message)||'try again'),6000)}}
+async function translateSet(id){const s=getSet(id);if(!s)return;const b=$('#trbtn');if(b){b.disabled=true;b.innerHTML=spinner+' Translating…'}
+ try{const out=await callAI({kind:'translate',title:s.title,questions:s.questions.map(q=>({q:q.q,o:q.o,ex:q.ex||''}))});
+  const tq=(out&&out.questions)||[];if(tq.length!==s.questions.length)throw{message:'the translation came back incomplete — try again'};
+  const qs=s.questions.map((q,i)=>{const t=tq[i]||{};const o=Array.isArray(t.o)&&t.o.length===q.o.length?t.o.map(String):q.o;return{l:q.l,q:String(t.q||q.q).slice(0,300),o,a:q.a,ex:String(t.ex||q.ex||'').slice(0,300),pic:q.pic||'',img:q.img||null}});
+  S.aiSet={title:String((out&&out.title)||s.title+' (عربي)').slice(0,120),topic:s.topic||'other',grade:s.grade||'',questions:qs};go(aiPreviewView)
+ }catch(e){if(b){b.disabled=false;b.textContent='🌐 Translate to Arabic'}toast('😕 Could not translate: '+((e&&e.message)||'try again'),5000)}}
+function aiPreviewView(){const s=S.aiSet;if(!s)return createView();const mode=S.postMode||'classic';
+ return `<div class="sec-title"><span class="link" style="color:#fff" onclick="${s.id?`go(setView,'${s.id}')`:'go(createView)'}">← Back</span> ${s.id?'✏️ Edit your game':'✨ Your game is ready!'}</div>
+ <div class="card"><label>Game title</label><input value="${esc(s.title)}" oninput="S.aiSet.title=this.value">
+  <label>Game mode</label><div class="mchips">${Object.values(MODES).map(m=>`<button class="mchip ${mode===m.id?'on':''}" onclick="S.postMode='${m.id}';draw()">${m.emoji} ${m.name}</button>`).join('')}</div>
+  <div class="row" style="margin-top:18px"><button class="btn g big" id="postbtn" onclick="postGame()">🚀 Post game</button><button class="btn" onclick="saveAISet('view')">💾 Save only</button><button class="btn ghost" onclick="saveAISet('options')">⚙️ More options</button></div>
+  <p class="muted" style="font-weight:700;margin-bottom:0">Post game gives you a code and a link for your students right away. You can change any question, emoji or picture below first.</p></div>
+ <div class="card qlist">${qListHTML(s.questions,true)}</div>
+ <div class="card"><h3>➕ Add a question</h3>
+  <label>Question</label><input id="mq">
+  <div class="grid g2" style="gap:8px;margin-top:8px">${[0,1,2,3].map(i=>`<input id="mo${i}" placeholder="${i===0?'Correct answer':'Wrong answer '+i}">`).join('')}</div>
+  <div class="row" style="margin-top:10px"><select id="ml" style="width:auto"><option value="1">🌱 Level 1</option><option value="2" selected>🔥 Level 2</option><option value="3">🚀 Level 3</option></select><input id="mp" class="emo nt" placeholder="🙂" maxlength="12" title="Emoji picture"><button class="btn sm" onclick="addManualQ()">Add</button></div></div>`}
+function addManualQ(){const q=$('#mq').value.trim(),o=[0,1,2,3].map(i=>$('#mo'+i).value.trim());if(!q||!o[0]||o.filter(Boolean).length<2)return toast('Add a question, the correct answer and at least one wrong answer');S.aiSet.questions.push(mkQ(+$('#ml').value,q,o[0],o.slice(1).filter(Boolean),'',$('#mp').value.trim()));draw()}
+async function saveAISet(after){const s=S.aiSet;if(!s||!s.questions.length){toast('Add at least one question');return null}if(!S.user||!S.user.teacher){requireTeacher(()=>go(aiPreviewView));return null}
+ if(S.saving)return null;S.saving=true;
+ try{for(const q of s.questions){if(q.imgData){const r=S.db.collection('images').doc();await r.set({data:q.imgData,ownerId:S.uid,createdAt:Date.now()});S.imgCache[r.id]=q.imgData;q.img=r.id;delete q.imgData}}
+  const ref=s.id?S.db.doc('sets/'+s.id):S.db.collection('sets').doc();
+  const body={title:(s.title||'My Lesson').slice(0,120),topic:s.topic||'other',grade:s.grade||'',ownerId:S.uid,ownerName:(S.user.name||'').slice(0,60),createdAt:s.createdAt||Date.now(),updatedAt:Date.now(),
+   questions:s.questions.map(q=>({l:q.l,q:q.q,o:q.o,a:q.a,ex:q.ex||'',pic:q.pic||'',img:q.img||null}))};
+  await ref.set(body);const full=Object.assign({id:ref.id},body);const i=S.sets.findIndex(x=>x.id===ref.id);if(i>=0)S.sets[i]=full;else S.sets.push(full);
+  S.aiSet=null;S.aiForm=null;S.lessonPdf=null;S.lessonFiles=[];S.saving=false;
+  if(after!=='post')toast('Saved ✅');if(after==='options')hostWith(ref.id);else if(after==='view')go(setView,ref.id);return ref.id
+ }catch(e){S.saving=false;writeErr(e);return null}}
+async function postGame(){const b=$('#postbtn');if(b){b.disabled=true;b.innerHTML=spinner+' Posting…'}const mode=S.postMode||'classic';const id=await saveAISet('post');
+ if(!id){if(b){b.disabled=false;b.textContent='🚀 Post game'}return}hostWith(id,true);S.draft.mode=mode;Object.assign(S.draft,modeDefaults(mode));createGame()}
+
+/* ================= game modes ================= */
+const PU={'5050':{name:'50/50',em:'✂️'},x2:{name:'Double Points',em:'✖️2'},freeze:{name:'Time Freeze',em:'❄️'},saver:{name:'Streak Saver',em:'🛟'}};
+const FISH=[['🐟','Minnow',1,4,30],['🐠','Clownfish',3,8,24],['🐡','Pufferfish',6,14,16],['🦀','Crab',8,18,10],['🦑','Squid',12,30,8],['🐙','Octopus',20,45,5],['🦈','Shark',60,140,3],['🐋','Blue Whale',200,450,1],['🍀','Lucky Lure',0,0,3]];
+const CAFE=[['🍕','pizza'],['🍔','burger'],['🌮','tacos'],['🧋','bubble tea'],['🍩','donuts'],['🍜','ramen'],['🥤','a smoothie'],['🍟','fries'],['🍦','ice cream']];
+const LOOT={Common:{v:10,w:55,items:['🧦','🥄','🪨','📎','🧽']},Rare:{v:30,w:25,items:['🛹','🎧','⚽','🧢','🎒']},Epic:{v:75,w:13,items:['🗡️','🛡️','🎮','🪄','🏆']},Legendary:{v:150,w:6,items:['👑','🐉','💎','🚀','🦄']},Mythic:{v:400,w:1,items:['🌌','♾️','🔮','🌈','🪐']}};
+function auraTitle(a){return a<0?'Negative Aura 💀':a<500?'NPC 🧍':a<1500?'Main Character 🌟':a<3000?'Sigma 🗿':a<6000?'Aura Legend 👑':'Infinite Aura ♾️'}
+function streamBadge(f){return f<100?'New Streamer 📷':f<1000?'Rising Star ⭐':f<10000?'Influencer 💫':f<100000?'Viral Icon 🔥':'Mega Creator 👑'}
+function others(){return Object.values(S.players).filter(p=>p.uid!==S.uid)}
+function bal(uid){const p=S.players[uid];let b=(p&&p.stats&&p.stats.earned)||0;for(const h of S.hits){if(h.kind!=='xfer')continue;if(h.by===uid)b+=h.amt;if(h.target===uid)b-=h.amt}return b}
+function hp(uid){const st=(S.players[uid]&&S.players[uid].stats)||{};let v=100+(st.heal||0)-(st.selfDmg||0);for(const h of S.hits)if(h.kind==='dmg'&&h.target===uid)v-=h.amt;return v}
+function kos(uid){return S.hits.filter(h=>h.kind==='dmg'&&h.by===uid&&h.ko).length}
+function addHit(h){const d=Object.assign({by:S.uid,at:Date.now()},h);S.hits.push(d);S.db.collection(`games/${S.code}/hits`).add(d).catch(writeErr)}
+function targetOpts(list,label){return list.slice(0,6).map(p=>({html:`<span style="font-size:34px">${p.avatar}</span><span class="nt">${esc(nm(p))}</span><small>${label(p)}</small>`,v:p.uid}))}
+const goalShow=p=>p.stats.fin?'🏁 Finished!':`${p.stats.pos||0}/${S.game.goal}`;
+const goalScore=p=>(p.stats.fin?1e13-p.stats.fin:0)+(p.stats.pos||0);
+const MODES={
+classic:{cat:'game',name:'Quiz Show',emoji:'🎤',desc:'Timed questions with a speed bonus, streaks, memes and power-ups (50/50, ×2, Time Freeze, Streak Saver).',finite:true,
+ init:()=>({pts:0,power:[]}),
+ correct(st,c){let g=600+Math.max(0,Math.round(400*(1-c.t/(c.T||20000))));g+=100*Math.min(st.streak-1,5);if(st.x2){g*=2;st.x2=false}st.pts+=g;let x='';if(st.streak%3===0&&(st.power||[]).length<3){const k=pick(Object.keys(PU));st.power=(st.power||[]).concat(k);x=` · Power-up: ${PU[k].em} ${PU[k].name}`}return `+${g} pts${x}`},
+ wrong(st,c,prev){if(st.saver){st.saver=false;st.streak=prev;return '🛟 Streak Saver kept your streak!'}return 'Streak reset'},
+ score:p=>p.stats.pts||0,show:p=>fmt(p.stats.pts)+' pts'},
+royale:{cat:'game',name:'Last One Standing',emoji:'⚔️',desc:'Every right answer lets you blast a classmate. Lose all your HP and you\'re out — get 3 right in a row to revive.',
+ init:()=>({heal:0,selfDmg:0,revive:0}),
+ correct(st){if(hp(S.uid)<=0){st.revive=(st.revive||0)+1;if(st.revive>=3){st.heal+=40-hp(S.uid);st.revive=0;return '🔄 REVIVED with 40 HP!'}return `Revive ${st.revive}/3`}return st.streak>=3?'🔥 Critical blast ready!':'Blast ready!'},
+ wrong(st){if(hp(S.uid)>0){st.selfDmg+=10;return '−10 HP'}st.revive=0;return 'Revive progress reset'},
+ async reward(st){if(hp(S.uid)<=0)return;const dmg=st.streak>=3?30:20;const foes=shuffle(others().filter(p=>hp(p.uid)>0));const opts=targetOpts(foes,p=>'❤️ '+hp(p.uid));if(hp(S.uid)<100)opts.push({html:'<span style="font-size:34px">🛡️</span>Heal<small>+15 HP</small>',v:'heal'});
+  if(!opts.length){st.bonus=(st.bonus||0)+10;return toast('👑 Nobody left to blast!')}
+  const v=await choose(`💥 Blast someone for ${dmg} damage!`,opts);if(v==='heal'){st.heal+=Math.min(15,100-hp(S.uid));return toast('🛡️ Healed!')}
+  const ko=hp(v)-dmg<=0;addHit({kind:'dmg',target:v,amt:dmg,ko});toast(ko?`💀 You knocked out ${nm(S.players[v])}!`:`💥 Hit ${nm(S.players[v])} for ${dmg}!`)},
+ extra(p){const h=Math.max(0,hp(p.uid));return `<div class="hpbar"><i style="width:${Math.min(100,h)}%"></i></div>${h<=0?`<div class="subt" style="margin-top:6px">💀 Out! Revive: ${p.stats.revive||0}/3 right in a row</div>`:''}`},
+ score:p=>{const h=hp(p.uid);return (h>0?1e5+h*10:0)+kos(p.uid)*500+(p.stats.correct||0)},
+ show:p=>{const h=hp(p.uid);return h>0?`❤️ ${h} · 💀 ${kos(p.uid)}`:`☠️ OUT · ${kos(p.uid)} KOs`}},
+hack:{cat:'game',name:'Code Breaker',emoji:'💻',desc:'Right answers crack passwords for coins — or HACK a classmate and steal 20% of their coins.',
+ init:()=>({earned:0}),
+ async reward(st){const pool=[20,40,60,80,100,120,150,200,250,300].slice(0,6+Math.min(4,st.streak));const a=pick(pool),b=pick(pool),c=pick(pool);const tg=others().filter(p=>bal(p.uid)>0);
+  const opts=[{html:`🔐<b>+${a}</b><small>coins</small>`,v:a},{html:`🔐<b>+${b}</b><small>coins</small>`,v:b},tg.length?{html:'💻<b>HACK</b><small>steal 20%</small>',v:'hack'}:{html:`🔐<b>+${c}</b><small>coins</small>`,v:c}];
+  const v=await choose('Pick a password to crack 🔓',shuffle(opts));
+  if(v!=='hack'){st.earned+=v;floaty('+'+v+' 🪙');return}
+  const t=await choose('💻 Who do you hack?',targetOpts(tg.sort((x,y)=>bal(y.uid)-bal(x.uid)),p=>'🪙 '+fmt(bal(p.uid))));
+  const amt=Math.max(1,Math.floor(bal(t)*0.2));addHit({kind:'xfer',target:t,amt});floaty('+'+amt+' 🪙');toast(`💻 Hacked ${nm(S.players[t])} for ${amt} coins!`)},
+ score:p=>bal(p.uid),show:p=>'🪙 '+fmt(bal(p.uid))},
+gold:{cat:'game',name:'Treasure Quest',emoji:'💰',desc:'Right answers open a treasure chest — gold, double, triple… or lose gold, steal from someone, or swap!',
+ init:()=>({earned:0}),
+ async reward(st){await choose('Pick a chest! 🧰',[0,1,2].map(i=>({html:'🧰',v:i,cls:'chest'})));const b=bal(S.uid);let r=wpick([['add',45],['double',8],['triple',3],['lose25',9],['lose50',4],['steal',14],['swap',5],['nothing',8]]);const tg=others();
+  if((r==='steal'||r==='swap')&&!tg.length)r='add';let msg='',sub='';
+  if(r==='add'){const g=pick([10,20,25,40,50,75,100]);st.earned+=g;msg=`💰 +${g} gold!`}
+  else if(r==='double'){const g=Math.max(b,10);st.earned+=g;msg='✖️2 DOUBLE GOLD!';sub=`+${g}`}
+  else if(r==='triple'){const g=Math.max(b*2,20);st.earned+=g;msg='✖️3 TRIPLE GOLD!';sub=`+${g}`}
+  else if(r==='lose25'||r==='lose50'){const pc=r==='lose25'?.25:.5;const g=Math.floor(Math.max(0,b)*pc);st.earned-=g;msg=`😬 Lost ${pc*100}% of your gold`;sub=`−${g}`}
+  else if(r==='nothing'){msg='🫥 Empty chest… nothing!'}
+  else if(r==='steal'){const t=await choose('🦹 STEAL 25% from…',targetOpts(tg.sort((x,y)=>bal(y.uid)-bal(x.uid)),p=>'💰 '+fmt(bal(p.uid))));const amt=Math.floor(Math.max(0,bal(t))*0.25);addHit({kind:'xfer',target:t,amt});msg=`🦹 Stole ${amt} gold from ${esc(nm(S.players[t]))}!`}
+  else if(r==='swap'){const t=await choose('🔄 SWAP gold with…',targetOpts(shuffle(tg),p=>'💰 '+fmt(bal(p.uid))));const amt=bal(t)-b;addHit({kind:'xfer',target:t,amt,swap:true});msg=`🔄 Swapped gold with ${esc(nm(S.players[t]))}!`}
+  await reveal(msg,sub)},
+ score:p=>bal(p.uid),show:p=>'💰 '+fmt(bal(p.uid))},
+race:{cat:'game',name:'Turbo Race',emoji:'🏎️',desc:'Each right answer moves your car forward. 3 in a row = NITRO (+2). First across the finish line wins!',goal:true,
+ init:()=>({pos:0}),
+ correct(st){const n=st.streak>=3?2:1;st.pos=Math.min(S.game.goal,st.pos+n);if(st.pos>=S.game.goal&&!st.fin){st.fin=Date.now();S.p.done=true;return '🏁 FINISHED!'}return n>1?'🔥 NITRO +2':'+1 🏎️'},
+ wrong(){return 'Engine stalled 🛞'},extra:()=>trackHTML(),score:goalScore,show:goalShow},
+fish:{cat:'game',name:'Deep Sea Fishing',emoji:'🎣',desc:'Right answers let you cast and reel in fish. Find a Lucky Lure for a 3-catch FRENZY (×2)!',
+ init:()=>({lbs:0,frenzy:0,fish:[]}),
+ async reward(st){await choose('🎣 Something is biting…',[{html:'<span style="font-size:40px">🎣</span>Reel it in!',v:1}]);const f=wpick(FISH.map(x=>[x,x[4]]));
+  if(f[1]==='Lucky Lure'){st.frenzy=3;return reveal('🍀 LUCKY LURE!','FRENZY: your next 3 catches are ×2')}
+  let lbs=rnd(f[2],f[3]);if(st.frenzy>0){lbs*=2;st.frenzy--}st.lbs+=lbs;st.fish=(st.fish||[]).concat(f[0]).slice(-24);await reveal(`${f[0]} You caught a ${f[1]}!`,`${lbs} lbs${st.frenzy?` · Frenzy left: ${st.frenzy}`:''}`)},
+ wrong(){return 'The fish got away 🐟💨'},
+ extra:p=>`<div class="inv">${(p.stats.fish||[]).join('')}</div>`,score:p=>p.stats.lbs||0,show:p=>'🎣 '+fmt(p.stats.lbs)+' lbs'},
+cafe:{cat:'game',name:'Cafe Rush',emoji:'☕',desc:'Every right answer serves a customer. Streaks earn tips and every 5 customers upgrades your cafe.',
+ init:()=>({cash:0,served:0}),
+ correct(st){st.served++;const tip=5*Math.min(st.streak,6);const lv=Math.floor(st.served/5);const g=15+lv*10+tip;st.cash+=g;const it=pick(CAFE);floaty('+$'+g);return `${it[0]} Served ${it[1]}! +$${g}${tip?` (tip $${tip})`:''}${st.served%5===0?' · ⬆️ Cafe upgraded!':''}`},
+ wrong(){return 'A customer walked out 😤'},
+ extra:p=>`<div class="subt" style="margin-top:6px">⭐ Cafe level ${1+Math.floor((p.stats.served||0)/5)} · ${p.stats.served||0} served</div>`,score:p=>p.stats.cash||0,show:p=>'💵 $'+fmt(p.stats.cash)},
+dino:{cat:'game',name:'Dino Dig',emoji:'🦕',desc:'Dig for fossils with right answers. Cheat to double your find… but 35% of the time you get caught!',
+ init:()=>({fos:0,caught:0}),
+ async reward(st){await choose('🦴 Pick a dig site',[0,1,2].map(v=>({html:'🪨',v,cls:'chest'})));const val=pick([10,15,20,25,30,40,60,80,120]);const e=val>=80?'🦖':val>=40?'🦕':val>=20?'💀':'🦴';
+  const v=await choose(`${e} Found a fossil worth ${val}!`,[{html:'✅<b>Keep it</b><small>safe</small>',v:'k'},{html:'🔍<b>Cheat</b><small>×2 · 35% risk</small>',v:'c'}]);
+  if(v==='k'){st.fos+=val;return floaty('+'+val)}
+  if(Math.random()<.35){const loss=Math.floor(st.fos*0.1);st.fos-=loss;st.caught++;return reveal('🚨 CAUGHT CHEATING!',`Fossil confiscated and −${loss}`)}
+  st.fos+=val*2;return reveal('😎 Got away with it!','+'+val*2)},
+ score:p=>p.stats.fos||0,show:p=>'🦴 '+fmt(p.stats.fos)},
+aura:{cat:'ga',name:'Aura Farm',emoji:'✨',desc:'Farm aura with right answers. Combos multiply up to ×5. Wrong answers cost −150 aura. Go from NPC to Infinite Aura ♾️.',
+ init:()=>({aura:0,combo:0}),
+ correct(st){st.combo=Math.min(5,(st.combo||0)+1);const g=100*st.combo;st.aura+=g;floaty(`+${g} aura`);return `+${g} aura (combo ×${st.combo})`},
+ wrong(st){st.aura-=150;st.combo=0;floaty('−150 aura');return '−150 aura 💀'},
+ extra:p=>`<div class="subt" style="margin-top:6px">${auraTitle(p.stats.aura||0)}</div>`,score:p=>p.stats.aura||0,show:p=>'✨ '+fmt(p.stats.aura)},
+obby:{cat:'ga',name:'Obby Dash',emoji:'🧱',desc:'Parkour obstacle course: right answers jump you to the next platform. Wrong = you fall back to your last checkpoint (every 5).',goal:true,
+ init:()=>({pos:0}),
+ correct(st){const n=st.streak>=3?2:1;st.pos=Math.min(S.game.goal,st.pos+n);if(st.pos>=S.game.goal&&!st.fin){st.fin=Date.now();S.p.done=true;return '🏆 OBBY COMPLETE!'}return (n>1?'🦘 Double jump! ':'🦘 Jump! ')+(st.pos%5===0?'🚩 Checkpoint!':'')},
+ wrong(st){const cp=Math.floor(st.pos/5)*5;if(st.pos>cp){st.pos=cp;return `😵 Fell to checkpoint ${cp}`}return 'Slipped… but held on 🧗'},
+ extra:()=>trackHTML(),score:goalScore,show:goalShow},
+loot:{cat:'ga',name:'Loot Drop',emoji:'🎁',desc:'Every right answer opens a crate: Common → Rare → Epic → Legendary → Mythic. Streaks boost your odds of rare loot!',
+ init:()=>({value:0,inv:[]}),
+ async reward(st){await choose('🎁 Open your crate!',[{html:'<span style="font-size:56px">🎁</span>Open',v:1}]);const boost=st.streak>=5?2:st.streak>=3?1.5:1;
+  const r=wpick(Object.entries(LOOT).map(([k,x])=>[k,k==='Common'?x.w:x.w*boost]));const it=pick(LOOT[r].items);st.value+=LOOT[r].v;st.inv=(st.inv||[]).concat(it).slice(-30);
+  await reveal(`${it} <span class="rar ${r}">${r}</span>`,`+${LOOT[r].v} value`)},
+ extra:p=>`<div class="inv">${(p.stats.inv||[]).join('')}</div>`,score:p=>p.stats.value||0,show:p=>'🎁 '+fmt(p.stats.value)},
+stream:{cat:'ga',name:'Streamer Rush',emoji:'📱',desc:'Grow your channel: right answers gain followers, streaks can make you GO VIRAL. Wrong answers get you ratio\'d (−10%).',
+ init:()=>({fol:0}),
+ correct(st){let g=rnd(15,40)+Math.floor(st.fol*0.08);if(st.streak>=3)g=Math.floor(g*1.5);let v='';if(st.streak>=2&&Math.random()<.12){g+=Math.max(g*4,Math.floor(st.fol*0.5));v=' 🚀 WENT VIRAL!'}st.fol+=g;floaty('+'+fmt(g)+' 👥');return `+${fmt(g)} followers${v}`},
+ wrong(st){const l=Math.floor(st.fol*0.1);st.fol-=l;return `Ratio'd 😬 −${fmt(l)} followers`},
+ extra:p=>`<div class="subt" style="margin-top:6px">${streamBadge(p.stats.fol||0)}</div>`,score:p=>p.stats.fol||0,show:p=>'👥 '+fmt(p.stats.fol)}
+};
+Object.keys(MODES).forEach(k=>MODES[k].id=k);
+const LEDGER_MODES=['royale','hack','gold'];
+function modeDefaults(m){return{timeLimit:m==='classic'?0:8,qTime:m==='classic'?20:0}}
+function modeCards(clickable){const sec=(cat,title)=>`<div class="sec-title">${title}</div><div class="grid g3">${Object.values(MODES).filter(m=>m.cat===cat).map(m=>`<div class="mode" ${clickable?`onclick="selectMode('${m.id}')"`:''}><div class="em">${m.emoji}</div><h3>${m.name}</h3><p class="muted" style="font-weight:700;margin:8px 0 0;font-size:14px">${m.desc}</p></div>`).join('')}</div>`;
+ return sec('game','🎮 Game modes')+sec('ga','✨ Gen Alpha modes')}
+
+/* ================= hosting ================= */
+const DRAFT0={mode:null,timeLimit:8,qTime:0,levelMode:'choose',goal:20,shuffleAns:true,showAns:true,lateJoin:true,sound:true};
+function hostWith(setId,silent){const s=getSet(setId);if(!s)return toast('Game not found');S.draft=Object.assign({},DRAFT0,{setId:s.builtin?null:s.id,title:s.title,topic:s.topic||'other',questions:s.questions});if(!silent)requireTeacher(()=>go(hostModeView))}
+function hostModeView(){return `<div class="sec-title"><span class="link" style="color:#fff" onclick="go(libraryView)">← Library</span> Choose a game mode <small>for "${esc(S.draft.title)}"</small></div>${modeCards(true)}`}
+function selectMode(id){S.draft.mode=id;Object.assign(S.draft,modeDefaults(id));go(hostSettingsView)}
+function hostSettingsView(){const d=S.draft;if(!d.mode){d.mode='classic';Object.assign(d,modeDefaults('classic'))}const M=MODES[d.mode];const c=lvCounts(d.questions);
+ const tog=(k,t)=>`<label class="tog"><input type="checkbox" ${d[k]?'checked':''} onchange="S.draft.${k}=this.checked"> ${t}</label>`;
+ return `<div class="sec-title"><span class="link" style="color:#fff" onclick="go(hostModeView)">← Modes</span> ${M.emoji} ${M.name} — options</div>
+ <div class="card" style="max-width:780px">
+  <p style="font-weight:800;margin-top:0">📚 <span class="nt">${esc(d.title)}</span> — ${d.questions.length} questions (<span class="lv lv1">L1 ${c[1]}</span> <span class="lv lv2">L2 ${c[2]}</span> <span class="lv lv3">L3 ${c[3]}</span>)</p>
+  <div class="grid g3" style="gap:12px">
+   <div><label>Game length</label><select onchange="S.draft.timeLimit=+this.value">${[[0,M.finite?'Until everyone finishes':'No limit (I end it)'],[3,'3 minutes'],[5,'5 minutes'],[8,'8 minutes'],[10,'10 minutes'],[15,'15 minutes'],[20,'20 minutes']].map(([v,t])=>`<option value="${v}" ${d.timeLimit==v?'selected':''}>${t}</option>`).join('')}</select></div>
+   <div><label>Time per question</label><select onchange="S.draft.qTime=+this.value">${[[0,'No timer'],[10,'10 seconds'],[15,'15 seconds'],[20,'20 seconds'],[30,'30 seconds'],[45,'45 seconds'],[60,'60 seconds']].map(([v,t])=>`<option value="${v}" ${d.qTime==v?'selected':''}>${t}</option>`).join('')}</select></div>
+   ${M.goal?`<div><label>Finish line</label><select onchange="S.draft.goal=+this.value">${[10,15,20,25,30,40].map(v=>`<option value="${v}" ${d.goal==v?'selected':''}>${v} ${d.mode==='obby'?'platforms':'steps'}</option>`).join('')}</select></div>`:''}
+  </div>
+  <label>Differentiation — which level does each student get?</label>
+  <div class="lvcards" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
+   ${[['choose','🙋','Students choose'],['assign','🎯','I assign in lobby'],['1','🌱','Everyone Level 1'],['2','🔥','Everyone Level 2'],['3','🚀','Everyone Level 3']].map(([v,e,t])=>`<div class="lvc ${d.levelMode===v?'on':''}" onclick="S.draft.levelMode='${v}';draw()"><div class="em">${e}</div>${t}</div>`).join('')}
+  </div>
+  <label>More options</label>
+  ${tog('shuffleAns','🔀 Shuffle the answer choices')}${tog('showAns','✅ Show the right answer after each question')}${tog('lateJoin','🚪 Let students join after the game starts')}${tog('sound','🔊 Sound effects')}
+  <div style="margin-top:18px"><button class="btn g big" id="cg" onclick="createGame()">🚀 Post game</button></div></div>`}
+async function createGame(){const d=S.draft;if(!d||!d.questions||!d.questions.length)return toast('No questions to play');if(!S.user||!S.user.teacher)return requireTeacher(()=>go(hostSettingsView));
+ const b=$('#cg');if(b)b.disabled=true;let code;
+ try{for(let k=0;k<6;k++){code=String(rnd(100000,999999));const ex=await S.db.doc('games/'+code).get();if(!ex.exists)break}
+  await S.db.doc('games/'+code).set({code,hostId:S.uid,mode:d.mode,setId:d.setId||null,setTitle:d.title,topic:d.topic||'other',questions:d.questions.map(q=>({l:q.l,q:q.q,o:q.o,a:q.a,ex:q.ex||'',pic:q.pic||'',img:q.img||null})),status:'lobby',createdAt:Date.now(),
+   timeLimit:+d.timeLimit||0,qTime:+d.qTime||0,levelMode:d.levelMode,goal:+d.goal||20,shuffleAns:!!d.shuffleAns,showAns:!!d.showAns,lateJoin:!!d.lateJoin,sound:!!d.sound,assigned:{},kicked:{}});
+ }catch(e){if(b)b.disabled=false;return writeErr(e)}
+ confetti(16);hostGame(code)}
+async function rehost(code){try{const d=await S.db.doc('games/'+code).get();if(!d.exists)return toast('Game not found');const g=d.data();
+ S.draft=Object.assign({},DRAFT0,{setId:g.setId||null,title:g.setTitle,topic:g.topic,questions:g.questions,mode:g.mode,timeLimit:g.timeLimit,qTime:g.qTime||0,levelMode:g.levelMode,goal:g.goal||20,shuffleAns:g.shuffleAns!==false,showAns:g.showAns!==false,lateJoin:g.lateJoin!==false,sound:g.sound!==false});go(hostSettingsView)}catch(e){writeErr(e)}}
+function hostGame(code){leaveGame();S.role='host';S.code=code;S.htab='board';LS.set('llp_last',{code,role:'host'});
+ const t=setTimeout(()=>{if(!S.game)$('#app').innerHTML=`<div class="card empty">Can't reach the game yet. Check your connection. <span class="link" onclick="home()">Home</span></div>`},10000);
+ S.unsubs.push(S.db.doc('games/'+code).onSnapshot(d=>{clearTimeout(t);if(!d.exists){S.game=null;LS.set('llp_last',null);$('#app').innerHTML=`<div class="card empty">Game not found. <span class="link" onclick="home()">Home</span></div>`;return}
+  S.game=d.data();S.sfxOn=S.game.sound!==false;if(S.game.status==='ended'&&(LS.get('llp_last')||{}).code===code)LS.set('llp_last',null);rerender()},()=>clearTimeout(t)));
+ S.unsubs.push(S.db.collection(`games/${code}/players`).onSnapshot(snap=>{S.players={};snap.docs.forEach(d=>{S.players[d.id]=Object.assign({uid:d.id},d.data())});autoEnd();scheduleBoard();rerender()},()=>{}));
+ S.unsubs.push(S.db.collection(`games/${code}/hits`).onSnapshot(snap=>{S.hits=snap.docs.map(d=>d.data());rerender()},()=>{}));
+ go(hostView)}
+/* the host shares a small "board" doc so each student reads 1 doc instead of every player (keeps Firebase free-tier friendly) */
+function scheduleBoard(){if(S.role!=='host'||!S.game||S.boardT)return;S.boardT=setTimeout(writeBoard,Math.max(0,2500-(Date.now()-(S.boardAt||0))))}
+async function writeBoard(){S.boardT=null;S.boardAt=Date.now();if(S.role!=='host'||!S.code)return;const players=plist().map(p=>({uid:p.uid,nick:p.nick,avatar:p.avatar,level:p.level,done:!!p.done,stats:p.stats}));const j=JSON.stringify(players);if(j===S.boardLast)return;S.boardLast=j;try{await S.db.doc(`games/${S.code}/live/board`).set({players,at:Date.now()})}catch(e){}}
+function plist(){return Object.values(S.players).filter(p=>p&&p.stats)}
+function sorted(){const M=MODES[S.game.mode];return plist().sort((a,b)=>M.score(b)-M.score(a))}
+function autoEnd(){const g=S.game;if(!g||g.status!=='live'||S.role!=='host')return;const ps=plist();const M=MODES[g.mode];if((M.finite||M.goal)&&ps.length&&ps.every(p=>p.done))endGame()}
+async function startGame(){const g=S.game;try{await S.db.doc('games/'+S.code).update({status:'live',startedAt:Date.now(),endsAt:g.timeLimit?Date.now()+g.timeLimit*60000:null});beep('win')}catch(e){writeErr(e)}}
+async function endGame(){if(S.ending||!S.game||S.game.status==='ended')return;S.ending=true;try{await S.db.doc('games/'+S.code).update({status:'ended',endedAt:Date.now()});writeBoard()}catch(e){writeErr(e)}S.ending=false}
+async function assignLvl(uid,v){try{await S.db.doc('games/'+S.code).update({['assigned.'+uid]:+v})}catch(e){writeErr(e)}}
+async function kick(uid){try{await S.db.doc('games/'+S.code).update({['kicked.'+uid]:true});await S.db.doc(`games/${S.code}/players/${uid}`).delete()}catch(e){writeErr(e)}}
+function playerLevel(p,g){g=g||S.game;if('123'.includes(g.levelMode))return +g.levelMode;if(g.levelMode==='assign')return (g.assigned&&g.assigned[p.uid])||p.level||2;return p.level||2}
+async function makeQR(code,link){if(S.qr[code])return;try{await loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js');const tmp=document.createElement('div');new QRCode(tmp,{text:link,width:340,height:340,correctLevel:QRCode.CorrectLevel.M});const cv=tmp.querySelector('canvas');S.qr[code]=cv?cv.toDataURL():((tmp.querySelector('img')||{}).src||'');const q=$('#qr');if(q&&S.qr[code]&&!q.querySelector('img'))q.insertAdjacentHTML('afterbegin',`<img src="${S.qr[code]}" alt="QR code">`)}catch(e){}}
+function hostView(){const g=S.game;if(!g)return loadingBox('Loading game…');const M=MODES[g.mode];const ps=plist();
+ if(g.hostId!==S.uid)return `<div class="card empty">Only the teacher who made this game can open this screen. <span class="link" onclick="home()">Home</span></div>`;
+ const link=gameLink(g.code);
+ const head=`<div class="playbar"><span class="pill y">CODE ${esc(g.code)}</span><span class="pill">${M.emoji} ${M.name}</span><span class="pill nt">📚 ${esc(g.setTitle)}</span><span class="pill">👥 ${ps.length}</span><span class="pill" id="timer" style="display:none"></span>${g.status!=='ended'?`<button class="btn b sm" onclick="copyText('${esc(link)}','Link copied! 🔗')">🔗 Copy link</button>`:''}${g.status==='live'?'<button class="btn r sm" style="margin-inline-start:auto" onclick="endGame()">⏹ End game</button>':''}</div>`;
+ if(g.status==='lobby'){S.after=()=>makeQR(g.code,link);return head+`<div class="card"><div class="lobbygrid"><div class="center"><div class="muted" style="font-weight:900">Students: go to the website, tap <b>Join a Game</b> and enter</div><div class="bigcode">${esc(g.code)}</div>
+  <div class="linkbox"><input class="nt" readonly value="${esc(link)}" onclick="this.select()"><button class="btn b sm" onclick="copyText('${esc(link)}','Link copied! 🔗')">🔗 Copy link</button></div>
+  <div class="muted" style="font-weight:800;margin-top:10px">Levels: ${g.levelMode==='choose'?'🙋 students choose':g.levelMode==='assign'?'🎯 you assign below':'everyone '+LEVELS[g.levelMode].em+' Level '+g.levelMode}${g.timeLimit?` · ⏱ ${g.timeLimit} min`:''}${g.qTime?` · ⏲️ ${g.qTime}s per question`:''}</div>
+  <div style="margin-top:16px"><button class="btn g big" onclick="startGame()" ${ps.length?'':'disabled'}>▶ Start game</button></div>${ps.length?'':`<p class="muted"><span class="bounce">⏳</span> Waiting for players…</p>`}</div>
+  <div class="qr center" id="qr">${S.qr[g.code]?`<img src="${S.qr[g.code]}" alt="QR code">`:''}<div class="muted" style="font-weight:800;font-size:13px;margin-top:6px">Scan to join</div></div></div></div>
+  <div class="plgrid">${ps.map(p=>`<div class="pl"><span class="av">${p.avatar}</span><span class="nt">${esc(nm(p))}</span>${g.levelMode==='assign'?`<select onchange="assignLvl('${p.uid}',this.value)">${[1,2,3].map(l=>`<option value="${l}" ${playerLevel(p)==l?'selected':''}>${LEVELS[l].em} L${l}</option>`).join('')}</select>`:`<span class="lv lv${playerLevel(p)}">L${playerLevel(p)}</span>`}<button class="x" title="Remove" onclick="kick('${p.uid}')">✕</button></div>`).join('')}</div>`}
+ const tabs=`<div class="tabs">${[['board','🏆 Leaderboard'],['feed','📡 Live answers'],['report','📊 Report']].map(([k,t])=>`<button class="tab ${S.htab===k?'on':''}" onclick="S.htab='${k}';draw()">${t}</button>`).join('')}${g.status==='ended'?`<button class="tab" onclick="rehost('${g.code}')">🔁 Host again</button><button class="tab" onclick="home()">🏠 Home</button>`:''}</div>`;
+ let body='';
+ if(S.htab==='board')body=(g.status==='ended'?podiumHTML():'')+`<div class="card">${M.goal?trackHTML(true):''}<div class="lb" style="margin-top:${M.goal?14:0}px">${lbRows(sorted())}</div></div>`;
+ else if(S.htab==='feed')body=`<div class="card"><h3>📡 Every answer, live</h3><div class="feed" style="margin-top:10px">${feedHTML()}</div></div>`;
+ else body=reportHTML(g,ps);
+ return head+(g.status==='ended'?`<div class="hero" style="padding:6px"><h1 style="font-size:44px">🏁 Game over!</h1></div>`:'')+tabs+body}
+function lbRows(list,mark){const M=MODES[S.game.mode];return list.map((p,i)=>`<div class="lbr ${p.uid===mark?'me':''}"><span class="rk">${i<3?['🥇','🥈','🥉'][i]:i+1}</span><span class="av">${p.avatar}</span><span class="nm"><span class="nt">${esc(nm(p))}</span>${p.uid===mark?' (you)':''}</span><span class="lv lv${p.level||2}">L${p.level||2}</span><span class="sc">${M.show(p)}</span></div>`).join('')||'<div class="empty">No players yet</div>'}
+function podiumHTML(){const t=sorted().slice(0,3);if(!t.length)return '';const M=MODES[S.game.mode];const order=[1,0,2].filter(i=>t[i]);return `<div class="podium">${order.map(i=>`<div class="pod p${i+1}"><div class="md">${['🥇','🥈','🥉'][i]}</div><div class="av">${t[i].avatar}</div><b class="nt">${esc(nm(t[i]))}</b><div class="muted" style="font-weight:900">${M.show(t[i])}</div></div>`).join('')}</div>`}
+function trackHTML(big){const g=S.game;const ps=sorted().slice(0,big?12:8);return `<div class="track ${g.mode==='obby'?'obby':''}">${ps.map(p=>{const pct=Math.min(100,(p.stats.pos||0)/g.goal*100);return `<div class="lane ${p.uid===S.uid?'me':''}"><span class="car" style="left:calc(${pct}% - ${pct*0.3}px)">${p.avatar}</span><span class="ln"><span class="nt">${esc(nm(p))}</span> ${p.stats.pos||0}</span></div>`}).join('')}<div class="finish">${g.mode==='obby'?'🏆':'🏁'}</div></div>`}
+function ansText(q,c){return c<0?'⏰':esc(q.o[c])}
+function feedHTML(){const g=S.game;const all=[];plist().forEach(p=>(p.answers||[]).forEach(a=>all.push([p,a])));all.sort((x,y)=>y[1].at-x[1].at);
+ return all.slice(0,60).map(([p,a])=>{const q=g.questions[a.i]||{o:[]};return `<div class="fd ${a.ok?'ok':'no'}"><span style="font-size:22px">${p.avatar}</span><div style="flex:1"><b class="nt">${esc(nm(p))}</b> ${a.ok?'✅':'❌'} <span class="muted nt">${esc(q.q)}</span><br>answered <b class="nt">${ansText(q,a.c)}</b>${a.ok?'':` · correct: <b class="nt">${esc(q.o[q.a])}</b>`}</div><span class="muted" style="font-size:12px">${(a.t/1000).toFixed(1)}s</span></div>`}).join('')||'<div class="empty">Answers will stream in here as students play.</div>'}
+function pctColor(p){return p>=80?'#10c98f':p>=50?'#f5a623':'#ff4d6d'}
+function reportHTML(g,ps){
+ const allA=[];ps.forEach(p=>(p.answers||[]).forEach(a=>allA.push(a)));
+ const acc=allA.length?Math.round(allA.filter(a=>a.ok).length/allA.length*100):0;const avgT=allA.length?(allA.reduce((s,a)=>s+a.t,0)/allA.length/1000).toFixed(1):'0';
+ const qstats=g.questions.map((q,i)=>{const at=[];ps.forEach(p=>{const mine=(p.answers||[]).filter(a=>a.i===i);if(mine.length)at.push(mine[0])});const ok=at.filter(a=>a.ok).length;const wrongC={};at.filter(a=>!a.ok&&a.c>=0).forEach(a=>wrongC[a.c]=(wrongC[a.c]||0)+1);const mw=Object.entries(wrongC).sort((a,b)=>b[1]-a[1])[0];return{q,i,n:at.length,pct:at.length?Math.round(ok/at.length*100):null,mw:mw?q.o[mw[0]]:''}});
+ const qSec=[1,2,3].map(l=>{const rows=qstats.filter(s=>s.q.l===l);if(!rows.length)return '';return `<h3 style="margin:16px 0 6px">${LEVELS[l].em} Level ${l} — ${LEVELS[l].name}</h3><table><tr><th>#</th><th>Question</th><th>Correct answer</th><th>First-try correct</th><th>Most common wrong answer</th></tr>${rows.map(s=>`<tr><td>Q${s.i+1}</td><td class="nt">${esc(s.q.q)}</td><td class="nt">${esc(s.q.o[s.q.a])}</td><td>${s.pct===null?'<span class="muted">—</span>':`<span class="pct" style="background:${pctColor(s.pct)}">${s.pct}%</span> <small class="muted">(${s.n})</small>`}</td><td class="nt">${esc(s.mw)||'—'}</td></tr>`).join('')}</table>`}).join('');
+ const rank={};sorted().forEach((p,i)=>rank[p.uid]=i+1);
+ const stu=ps.slice().sort((a,b)=>(rank[a.uid]||99)-(rank[b.uid]||99)).map(p=>{const ans=p.answers||[];const ok=ans.filter(a=>a.ok).length;const pc=ans.length?Math.round(ok/ans.length*100):0;const lv=p.level||playerLevel(p,g);
+  const myQs=g.questions.map((q,i)=>[q,i]).filter(([q])=>q.l===lv);const dots=(myQs.length?myQs:g.questions.map((q,i)=>[q,i])).map(([q,i])=>{const m=ans.filter(a=>a.i===i);const cls=!m.length?'':m.every(a=>a.ok)?'ok':m.some(a=>a.ok)?'mix':'no';return `<span class="dot ${cls}" title="Q${i+1}: ${esc(q.q)}${m.length?' — answered: '+m.map(a=>a.c<0?'(time out)':esc(q.o[a.c])).join(', '):''}">${i+1}</span>`}).join('');
+  const open=S.openStu[p.uid];
+  return `<tr><td><b>${rank[p.uid]?(rank[p.uid]<4?['🥇','🥈','🥉'][rank[p.uid]-1]:'#'+rank[p.uid]):''}</b></td><td><span style="font-size:22px">${p.avatar}</span> <b class="nt">${esc(nm(p))}</b></td><td><span class="lv lv${lv}">L${lv}</span></td><td>${ans.length}</td><td><span class="pct" style="background:${pctColor(pc)}">${pc}%</span></td><td><div class="dots">${dots}</div></td><td><button class="btn ghost sm" onclick="S.openStu['${p.uid}']=!S.openStu['${p.uid}'];draw()">${open?'Hide':'Answers'}</button></td></tr>
+  ${open?`<tr><td colspan="7" style="background:#faf9ff">${ans.map(a=>{const q=g.questions[a.i]||{o:[]};return `<div class="rev"><span>${a.ok?'✅':'❌'}</span><div style="flex:1"><b>Q${a.i+1}.</b> <span class="nt">${esc(q.q)}</span><br><span class="muted">Answered:</span> <b class="nt">${ansText(q,a.c)}</b>${a.ok?'':` · <span class="muted">Correct:</span> <b class="nt" style="color:#08765a">${esc(q.o[q.a])}</b>`}</div><span class="muted">${(a.t/1000).toFixed(1)}s</span></div>`}).join('')||'<span class="muted">No answers yet.</span>'}</td></tr>`:''}`}).join('');
+ return `<div class="card"><div class="grid g4"><div class="stat"><b>${ps.length}</b><span>Players</span></div><div class="stat"><b>${allA.length}</b><span>Answers</span></div><div class="stat"><b style="color:${pctColor(acc)}">${acc}%</b><span>Accuracy</span></div><div class="stat"><b>${avgT}s</b><span>Avg time</span></div></div>
+  <div class="row" style="margin-top:12px"><button class="btn ghost sm" onclick="copyCSV()">📋 Copy results (CSV)</button><span class="muted" style="font-size:13px;font-weight:700">Paste into Excel / Google Sheets</span></div></div>
+ <div class="card"><h2>👩‍🎓 Students</h2><p class="muted" style="margin:4px 0 8px;font-weight:700">Each square is a question at the student's level: 🟩 right · 🟥 wrong · 🟧 right after a retry · ⬜ not yet. Hover for their answer.</p><div style="overflow:auto"><table><tr><th>Place</th><th>Student</th><th>Level</th><th>Answers</th><th>Accuracy</th><th>Questions</th><th></th></tr>${stu||'<tr><td colspan="7" class="empty">No players yet.</td></tr>'}</table></div></div>
+ <div class="card"><h2>❓ Questions</h2><div style="overflow:auto">${qSec}</div></div>`}
+function copyCSV(){const g=S.game;const rank={};sorted().forEach((p,i)=>rank[p.uid]=i+1);const rows=[['Place','Student','Level','Question #','Question','Their answer','Correct answer','Correct?','Seconds']];
+ plist().forEach(p=>(p.answers||[]).forEach(a=>{const q=g.questions[a.i]||{o:[]};rows.push([rank[p.uid]||'',p.nick||'',p.level||'',a.i+1,q.q,a.c<0?'(time out)':q.o[a.c],q.o[q.a],a.ok?'yes':'no',(a.t/1000).toFixed(1)])}));
+ copyText(rows.map(r=>r.map(x=>'"'+String(x??'').replace(/"/g,'""')+'"').join(',')).join('\n'),'Copied! Paste into a spreadsheet 📋')}
+function openMyGames(){requireTeacher(async()=>{go(()=>loadingBox('Loading your games…'));try{const snap=await S.db.collection('games').where('hostId','==',S.uid).get();S.myGames=snap.docs.map(d=>d.data()).sort((a,b)=>b.createdAt-a.createdAt)}catch(e){S.myGames=[];writeErr(e)}go(myGamesView)})}
+function myGamesView(){const mine=S.sets.filter(s=>s.ownerId===S.uid).sort((a,b)=>(b.updatedAt||0)-(a.updatedAt||0));
+ const tabs=`<div class="tabs"><button class="tab ${S.mgTab==='games'?'on':''}" onclick="S.mgTab='games';draw()">🎮 Games I hosted</button><button class="tab ${S.mgTab==='sets'?'on':''}" onclick="S.mgTab='sets';draw()">📝 Games I made</button></div>`;
+ const games=(S.myGames||[]).map(g=>`<div class="lbr"><span class="av">${MODES[g.mode]?MODES[g.mode].emoji:'🎮'}</span><span class="nm"><span class="nt">${esc(g.setTitle)}</span> <small class="muted">· ${MODES[g.mode]?MODES[g.mode].name:''} · ${new Date(g.createdAt).toLocaleString()} · CODE ${esc(g.code)}</small></span><span class="tag">${esc(g.status)}</span>
+  <button class="btn sm" onclick="hostGame('${g.code}')">${g.status==='ended'?'📊 Report':'Open'}</button><button class="btn g sm" onclick="rehost('${g.code}')">🔁 Host again</button>${g.status!=='ended'?`<button class="btn b sm" onclick="copyText('${esc(gameLink(g.code))}','Link copied! 🔗')">🔗 Link</button>`:''}<button class="x" title="Delete" onclick="delGame('${g.code}')">✕</button></div>`).join('')||'<div class="empty">No games yet — host one!</div>';
+ const sets=mine.map(s=>`<div class="lbr"><span class="av">${topicOf(s.topic).emoji}</span><span class="nm"><span class="nt">${esc(s.title)}</span> <small class="muted">· ${s.questions.length} questions</small></span><button class="btn g sm" onclick="hostWith('${s.id}')">▶ Host</button><button class="btn sm" onclick="editSet('${s.id}')">✏️ Edit</button><button class="btn ghost sm" onclick="go(setView,'${s.id}')">Preview</button></div>`).join('')||`<div class="empty">You haven't made a game yet. <span class="link" onclick="go(createView)">Make one with AI</span></div>`;
+ return `<div class="sec-title">📊 My games</div>${tabs}<div class="card"><div class="lb">${S.mgTab==='games'?games:sets}</div></div>`}
+async function delGame(code){try{await S.db.doc('games/'+code).delete();S.myGames=S.myGames.filter(g=>g.code!==code);draw()}catch(e){writeErr(e)}}
+
+/* ================= joining & playing (students: no account, just a name) ================= */
+async function joinCode(c){const code=String(c||($('#jcode')&&$('#jcode').value)||'').replace(/\D/g,'');if(code.length!==6){if(!S.view)home();return toast('Enter the 6-digit game code')}
+ if(!S.user){try{setUser(await B.auth.anon())}catch(e){if(!S.view)home();return toast(/operation-not-allowed|admin-restricted/.test(e&&e.code||'')?'Turn on Anonymous sign-in in Firebase (README step 2).':'Could not connect — check your internet.',5000)}}
+ let d;try{d=await S.db.doc('games/'+code).get()}catch(e){if(!S.view)home();return toast('Could not reach the game — try again')}
+ if(!d.exists){LS.set('llp_last',null);if(!S.view)home();return toast('No game with that code 🤔')}
+ const g=d.data();
+ if(g.hostId===S.uid)return hostGame(code);
+ if(g.kicked&&g.kicked[S.uid]){if(!S.view)home();return toast('The teacher removed you from this game')}
+ let mine=null;try{const m=await S.db.doc(`games/${code}/players/${S.uid}`).get();if(m.exists)mine=m.data()}catch(e){}
+ if(mine)return enterPlayer(code,g,mine);
+ if(g.status==='ended'){if(!S.view)home();return toast('That game has already ended')}
+ if(g.status==='live'&&g.lateJoin===false){if(!S.view)home();return toast('This game already started — ask your teacher')}
+ S.joinDraft={code,g,nick:(LS.get('llp_nick')||'').slice(0,16),level:2,avatar:LS.get('llp_av')||pick(AVATARS)};go(joinSetupView)}
+function joinSetupView(){const j=S.joinDraft,M=MODES[j.g.mode];
+ return `<div class="card" style="max-width:680px;margin:10px auto"><h2>Joining ${M.emoji} ${M.name}</h2><p class="muted" style="font-weight:800"><span class="nt">${esc(j.g.setTitle)}</span> · code ${esc(j.code)}</p>
+ <label>Your name</label><input id="jnick" maxlength="16" value="${esc(j.nick)}" oninput="S.joinDraft.nick=this.value" placeholder="Type your name" style="font-size:22px" onkeydown="if(event.key==='Enter')finishJoin()">
+ <label>Pick your buddy</label><div class="avgrid">${AVATARS.map(a=>`<button class="avb ${j.avatar===a?'on':''}" onclick="S.joinDraft.avatar='${a}';draw()">${a}</button>`).join('')}</div>
+ ${j.g.levelMode==='choose'?`<label>Pick your level</label><div class="lvcards">${[1,2,3].map(l=>`<div class="lvc ${j.level===l?'on':''}" onclick="S.joinDraft.level=${l};draw()"><div class="em">${LEVELS[l].em}</div>${LEVELS[l].name}<br><small class="muted">${LEVELS[l].d}</small></div>`).join('')}</div>`:''}
+ <div style="margin-top:18px"><button class="btn g big wide" onclick="finishJoin()">Join game 🎮</button></div></div>`}
+async function finishJoin(){const j=S.joinDraft,M=MODES[j.g.mode];const nick=(j.nick||'').replace(/\s+/g,' ').trim().slice(0,16);if(nick.length<2)return toast('Type your name first ✍️');
+ LS.set('llp_nick',nick);LS.set('llp_av',j.avatar);
+ const p={uid:S.uid,nick,avatar:j.avatar,level:j.g.levelMode==='choose'?j.level:playerLevel({uid:S.uid,level:2},j.g),joinedAt:Date.now(),answers:[],done:false,stats:Object.assign({streak:0,correct:0,wrong:0},M.init())};
+ try{await S.db.doc(`games/${j.code}/players/${S.uid}`).set(p)}catch(e){return writeErr(e)}
+ enterPlayer(j.code,j.g,p)}
+function enterPlayer(code,g,mine){leaveGame();S.role='player';S.code=code;S.game=g;S.sfxOn=g.sound!==false;S.p=Object.assign({},mine,{uid:S.uid});S.players[S.uid]=S.p;S.joinedAt=Date.now();S.lastStatus=g.status;LS.set('llp_last',{code,role:'player'});
+ S.myRef=S.db.doc(`games/${code}/players/${S.uid}`);
+ S.unsubs.push(S.db.doc('games/'+code).onSnapshot(d=>{if(!d.exists){LS.set('llp_last',null);toast('This game was closed');return home()}const ng=d.data();
+  if(ng.kicked&&ng.kicked[S.uid]){LS.set('llp_last',null);toast('The teacher removed you from this game',4000);return home()}
+  S.game=ng;S.sfxOn=ng.sound!==false;if(ng.status!==S.lastStatus){S.lastStatus=ng.status;if(ng.status==='ended'){S.playing=false;clearInterval(S.qTimer);LS.set('llp_last',null)}if(ng.status==='live')beep('win');draw()}else updateDyn()},()=>{}));
+ S.unsubs.push(S.db.doc(`games/${code}/live/board`).onSnapshot(d=>{const b=d.exists?d.data():{players:[]};const ids=new Set();(b.players||[]).forEach(p=>{if(p.uid!==S.uid)S.players[p.uid]=p;ids.add(p.uid)});Object.keys(S.players).forEach(k=>{if(k!==S.uid&&!ids.has(k))delete S.players[k]});S.players[S.uid]=S.p;updateDyn()},()=>{}));
+ if(LEDGER_MODES.includes(g.mode))S.unsubs.push(S.db.collection(`games/${code}/hits`).onSnapshot(snap=>{S.hits=snap.docs.map(d=>d.data());snap.docChanges().forEach(ch=>{if(ch.type!=='added')return;const h=ch.doc.data();if(h.target===S.uid&&h.by!==S.uid&&h.at>S.joinedAt){const who=nm(S.players[h.by]);toast(h.kind==='dmg'?`💥 ${who} blasted you for ${h.amt}!${h.ko?' You\'re OUT 💀':''}`:h.swap?`🔄 ${who} swapped with you!`:`🦹 ${who} took ${h.amt} from you!`,3500)}});updateDyn()},()=>{}));
+ go(playerView)}
+let wBusy=false,wAgain=false;
+async function commit(){S.players[S.uid]=S.p;updateDyn();if(!S.myRef)return;if(wBusy){wAgain=true;return}wBusy=true;try{await S.myRef.set(JSON.parse(JSON.stringify(S.p)))}catch(e){writeErr(e)}wBusy=false;if(wAgain){wAgain=false;commit()}}
+function gameOver(){const g=S.game;return !g||g.status==='ended'||(g.status==='live'&&g.endsAt&&Date.now()>g.endsAt)}
+function myRank(){return sorted().findIndex(p=>p.uid===S.uid)+1}
+function playerView(){const g=S.game,M=MODES[g.mode];
+ if(g.status==='lobby')return `<div class="hero"><div style="font-size:90px" class="bounce">${S.p.avatar}</div><h1 style="font-size:46px">You're in, <span class="nt">${esc(S.p.nick)}</span>!</h1><p>${M.emoji} ${M.name} · waiting for your teacher to start…</p></div>
+  <div class="card center" style="max-width:640px;margin:0 auto"><span class="lv lv${playerLevel(S.p)}">${LEVELS[playerLevel(S.p)].em} Level ${playerLevel(S.p)} · ${LEVELS[playerLevel(S.p)].name}</span><p class="muted" style="font-weight:700">${M.desc}</p><div id="lobbyPl" class="plgrid">${lobbyPl()}</div></div>`;
+ if(gameOver())return resultsView();
+ S.after=startPlay;
+ return `<div class="playbar"><span class="pill">${M.emoji} ${M.name}</span><span class="pill y" id="mystat">${M.show(S.p)}</span><span class="pill" id="rank">#${myRank()||'-'}</span><span class="pill" id="timer" style="display:none"></span><span class="pill">${S.p.avatar} <span class="nt">${esc(S.p.nick)}</span></span></div>
+ <div class="playgrid"><div id="qarea"></div><div class="side" id="side">${sideHTML()}</div></div>`}
+function lobbyPl(){return Object.values(S.players).map(p=>`<div class="pl"><span class="av">${p.avatar}</span><span class="nt">${esc(nm(p))}</span></div>`).join('')}
+function sideHTML(){const M=MODES[S.game.mode];const list=sorted();const r=myRank();return `<div class="card"><div class="subt">Your score</div><div class="mystat">${M.show(S.p)}</div>${M.extra?M.extra(S.p):''}<div class="subt" style="margin-top:8px">🔥 Streak ${S.p.stats.streak||0} · ✅ ${S.p.stats.correct||0} · Rank #${r||'-'}</div></div>
+ <div class="card"><div class="subt" style="margin-bottom:8px">🏆 Leaderboard</div><div class="lb">${lbRows(list.slice(0,5),S.uid)}${r>5?lbRows([S.p],S.uid).replace('🥇',r):''}</div></div>`}
+function updateDyn(){if(S.role!=='player'||!S.game)return;const M=MODES[S.game.mode];const s=$('#side');if(s)s.innerHTML=sideHTML();const ms=$('#mystat');if(ms)ms.textContent=M.show(S.p);const rk=$('#rank');if(rk)rk.textContent='#'+myRank();const lp=$('#lobbyPl');if(lp)lp.innerHTML=lobbyPl()}
+function startPlay(){if(!$('#qarea'))return;const g=S.game,M=MODES[g.mode];
+ if(!S.pool){const lvl=playerLevel(S.p);if(S.p.level!==lvl){S.p.level=lvl;commit()}
+  let pool=g.questions.map((q,i)=>Object.assign({i},q)).filter(q=>q.l===lvl);if(!pool.length)pool=g.questions.map((q,i)=>Object.assign({i},q));
+  pool.forEach(q=>{const idx=q.o.map((_,j)=>j);q.perm=g.shuffleAns===false?idx:shuffle(idx);if(q.img)loadImg(q.img)});S.pool=pool;
+  if(M.finite){const done=new Set((S.p.answers||[]).map(a=>a.i));S.queue=shuffle(pool.filter(q=>!done.has(q.i)))}else S.queue=shuffle(pool)}
+ S.playing=true;S.locked=false;nextQ()}
+function nextQ(){if(!S.playing||!$('#qarea'))return;if(gameOver()){S.playing=false;return draw()}const M=MODES[S.game.mode];
+ if(S.p.done)return showDone();
+ if(!S.queue.length){if(M.finite){S.p.done=true;commit();return showDone()}S.queue=shuffle(S.pool);if(S.queue.length>1&&S.cur&&S.queue[0].i===S.cur.i)S.queue.push(S.queue.shift())}
+ S.cur=S.queue.shift();renderQ()}
+function showDone(){const M=MODES[S.game.mode];$('#qarea').innerHTML=`<div class="qcard"><div style="font-size:70px" class="bounce">🎉</div><h2>${S.p.stats.fin?'You made it to the finish!':'All questions done!'}</h2><p class="muted" style="font-weight:800">You're #${myRank()} with ${M.show(S.p)}. Waiting for your teacher to end the game…</p></div>`;confetti(18)}
+function renderQ(){const q=S.cur,M=MODES[S.game.mode],st=S.p.stats;S.qStart=Date.now();S.locked=false;clearInterval(S.qTimer);const T=(S.game.qTime||0)*1000;
+ const out=S.game.mode==='royale'&&hp(S.uid)<=0;
+ $('#qarea').innerHTML=`${out?`<div class="banner">💀 You're out! Get 3 right in a row to revive (${st.revive||0}/3)</div>`:''}
+ <div class="qcard">${qMedia(q)}<div class="subt">${LEVELS[q.l]?LEVELS[q.l].em+' Level '+q.l:''}</div><div class="qtext nt">${esc(q.q)}</div>${T?'<div class="tbar"><i id="tb" style="width:100%"></i></div>':''}
+ ${M.id==='classic'&&(st.power||[]).length?`<div class="pups">${st.power.map((k,i)=>`<button class="pup" onclick="usePU(${i})">${PU[k].em} ${PU[k].name}</button>`).join('')}</div>`:''}${st.x2?'<div class="subt" style="margin-top:8px;color:#c42a63">✖️2 armed</div>':''}${st.saver?'<div class="subt" style="margin-top:8px;color:#08765a">🛟 Streak Saver armed</div>':''}</div>
+ <div class="answers">${q.perm.map((oi,j)=>`<button class="ans nt c${j}" id="ab${j}" onclick="answer(${j})"><span class="sh">${['▲','◆','●','■'][j]}</span>${esc(q.o[oi])}</button>`).join('')}</div>`;
+ hydrateImgs();
+ if(T)S.qTimer=setInterval(()=>{const left=T-(Date.now()-S.qStart);const b=$('#tb');if(b)b.style.width=Math.max(0,left/T*100)+'%';if(left<=0){clearInterval(S.qTimer);answer(-1)}},100)}
+function usePU(i){const st=S.p.stats;const k=st.power[i];st.power.splice(i,1);const q=S.cur;
+ if(k==='5050'){const wrong=shuffle(q.perm.map((oi,j)=>[oi,j]).filter(([oi])=>oi!==q.a).map(([,j])=>j)).slice(0,2);wrong.forEach(j=>{const b=$('#ab'+j);if(b){b.classList.add('gone');b.disabled=true}})}
+ if(k==='x2')st.x2=true;if(k==='saver')st.saver=true;
+ if(k==='freeze'){clearInterval(S.qTimer);const b=$('#tb');if(b)b.style.background='#7cc8ff'}
+ const pu=document.querySelectorAll('.pup')[i];if(pu)pu.remove();toast(PU[k].em+' '+PU[k].name+' used!');commit()}
+async function answer(j){if(S.locked||!S.cur)return;S.locked=true;clearInterval(S.qTimer);const q=S.cur,M=MODES[S.game.mode],st=S.p.stats;const t=Date.now()-S.qStart;const c=j<0?-1:q.perm[j];const ok=c===q.a;const T=(S.game.qTime||0)*1000;
+ const rightJ=q.perm.indexOf(q.a);document.querySelectorAll('.ans').forEach((b,k)=>{b.disabled=true;if(k===rightJ&&S.game.showAns!==false)b.classList.add('right');else if(k!==j)b.classList.add('dim')});
+ S.p.answers.push({i:q.i,c,ok,t,at:Date.now()});
+ const prev=st.streak||0;let msg='';
+ if(ok){st.streak=prev+1;st.correct=(st.correct||0)+1;if(M.correct)msg=M.correct(st,{t,q,T})||'';beep('ok')}
+ else{st.streak=0;st.wrong=(st.wrong||0)+1;if(M.wrong)msg=M.wrong(st,{t,q,T},prev)||'';beep('no')}
+ commit();
+ await new Promise(r=>setTimeout(r,450));if(!S.playing)return;
+ await feedback(ok,q,msg,j);if(!S.playing)return;
+ if(ok&&M.reward){try{await M.reward(st)}catch(e){}commit()}
+ if(!S.playing)return;nextQ()}
+function feedback(ok,q,msg,j){return new Promise(res=>{let done=false;const fin=()=>{if(done)return;done=true;res()};S.fbDone=fin;const show=S.game.showAns!==false;
+ if(ok&&Math.random()<.35)confetti(14);
+ $('#qarea').innerHTML=`<div class="fb ${ok?'ok':'no'}" onclick="S.fbDone&&S.fbDone()"><h2>${ok?pick(S.lang==='ar'?W_OK_AR:W_OK):(j<0?'⏰ Time\'s up!':pick(S.lang==='ar'?W_NO_AR:W_NO))}</h2>${msg?`<div class="sub">${esc(msg)}</div>`:''}${!ok&&show?`<div class="ca">✅ Correct answer: <span class="nt">${esc(q.o[q.a])}</span></div>`:''}${q.ex&&show?`<div class="ca nt" style="font-weight:700">💡 ${esc(q.ex)}</div>`:''}<div style="margin-top:14px;opacity:.85;font-weight:800">tap to continue</div></div>`;
+ setTimeout(fin,ok?(q.ex&&show?2600:1500):(show?(q.ex?4200:3000):1600))})}
+function choose(title,opts){return new Promise(res=>{S.chooseRes=res;S.chooseOpts=opts;const a=$('#qarea');if(!a)return;a.innerHTML=`<div class="choose"><h2>${title}</h2><div class="copts">${opts.map((o,i)=>`<button class="copt ${o.cls||''}" onclick="chosen(${i})">${o.html}</button>`).join('')}</div></div>`})}
+function chosen(i){const r=S.chooseRes;if(!r)return;S.chooseRes=null;r(S.chooseOpts[i].v)}
+function reveal(title,sub){const p=choose(`${title}${sub?`<div style="font-family:Nunito;font-size:22px;font-weight:900;margin-top:8px">${esc(sub)}</div>`:''}`,[{html:'Continue ➜',v:1}]);const mine=S.chooseRes;setTimeout(()=>{if(S.chooseRes===mine)chosen(0)},2600);return p}
+function resultsView(){const M=MODES[S.game.mode];const r=myRank();const ans=S.p.answers||[];const ok=ans.filter(a=>a.ok).length;const g=S.game;
+ S.after=()=>{if(r&&r<=3){confetti(40);beep('win')}};
+ return `<div class="hero"><div style="font-size:80px">${r===1?'🏆':r===2?'🥈':r===3?'🥉':'🎉'}</div><h1 style="font-size:48px">${r===1?'You won!':'Game over!'}</h1><p>You finished #${r} with ${M.show(S.p)} · ${ok}/${ans.length} correct</p></div>
+ ${podiumHTML()}
+ <div class="grid g2"><div class="card"><h3>🏆 Final leaderboard</h3><div class="lb" style="margin-top:10px">${lbRows(sorted().slice(0,10),S.uid)}</div></div>
+ <div class="card"><h3>📝 Your answers</h3>${ans.map(a=>{const q=g.questions[a.i]||{o:[]};return `<div class="rev"><span>${a.ok?'✅':'❌'}</span><div><span class="nt">${esc(q.q)}</span><br><span class="muted">You:</span> <b class="nt">${ansText(q,a.c)}</b>${a.ok?'':` · <span class="muted">Answer:</span> <b class="nt" style="color:#08765a">${esc(q.o[q.a])}</b>`}</div></div>`}).join('')||'<div class="empty">No answers</div>'}</div></div>
+ <div class="center" style="margin-top:18px"><button class="btn y big" onclick="home()">🏠 Home</button></div>`}
+function leaveGame(){S.unsubs.forEach(u=>{try{u()}catch(e){}});S.unsubs=[];clearInterval(S.qTimer);clearTimeout(S.boardT);S.boardT=null;S.boardLast=null;S.game=null;S.players={};S.hits=[];S.p=null;S.myRef=null;S.pool=null;S.queue=[];S.cur=null;S.playing=false;S.locked=false;S.chooseRes=null;S.role=null;S.code=null;S.openStu={}}
+function tick(){const g=S.game;if(!g)return;const el=$('#timer');if(el){if(g.status==='live'&&g.endsAt){el.textContent='⏱ '+mmss(Math.max(0,g.endsAt-Date.now()));el.style.display=''}else el.style.display='none'}
+ if(S.role==='host'&&g.status==='live'&&g.endsAt&&Date.now()>g.endsAt)endGame();
+ if(S.role==='player'&&S.playing&&gameOver()){S.playing=false;clearInterval(S.qTimer);draw()}}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+
+/* ================= Arabic (العربية) ================= */
+const AR={
+"Let's":'هيا',"Learn":'نتعلّم',"And":'و',"Play":'نلعب',"Let's Learn And Play":'هيا نتعلّم ونلعب',"Loading Let's Learn And Play":'جارٍ تحميل هيا نتعلّم ونلعب',
+"Join a Game":'انضم إلى لعبة',"Got a code from your teacher":'معك رمز من معلمك',"Join":'انضم',"Game code":'رمز اللعبة',"Host a Game":'استضف لعبة',"Host a game":'استضف لعبة',
+"Pick a topic → pick a game mode → share the code. Watch every answer live":'اختر موضوعًا ← اختر نمط اللعب ← شارك الرمز. وشاهد كل إجابة مباشرة',
+"My games & reports":'ألعابي وتقاريري',"Still in game":'ما زلت في اللعبة',"Jump back in":'عُد إلى اللعبة',"dismiss":'إخفاء',
+"Quizzes + epic game modes. Learn it, then play it":'اختبارات + أنماط لعب ملحمية. تعلّمها ثم العبها',"Make & explore":'اصنع واستكشف',
+"Lesson → Quiz with AI":'درس ← اختبار بالذكاء الاصطناعي',
+"Topic Library":'مكتبة المواضيع',"topics ready to play + sets made by teachers":'موضوعًا جاهزًا للعب + مجموعات من صنع المعلمين',"Game Modes":'نمط لعب',"Game modes":'أنماط اللعب',
+"Quiz Show, Battle Royale, Code Breaker, Aura Farm, Obby Dash & more":'عرض الأسئلة، آخر الصامدين، كاسر الشيفرة، مزرعة الهالة، سباق العوائق والمزيد',
+"Pick a topic":'اختر موضوعًا',"then choose a question set to host":'ثم اختر مجموعة أسئلة لاستضافتها',"New from a lesson":'جديد من درس',"AI-made, 3 levels":'بالذكاء الاصطناعي، 3 مستويات',
+"Topics":'المواضيع',"No sets yet":'لا توجد مجموعات بعد',"Make your own":'اصنع مجموعتك',"Create with AI":'أنشئ بالذكاء الاصطناعي',
+"Built-in":'جاهزة',"By a teacher":'من معلم',"Host":'استضف',"Preview":'معاينة',"This set was removed":'تم حذف هذه المجموعة',"Back":'رجوع',"Host this set":'استضف هذه المجموعة',"Delete set":'حذف المجموعة',
+"Translate to Arabic":'ترجم إلى العربية',
+"Level":'المستوى',"No questions at this level":'لا توجد أسئلة في هذا المستوى',"Set deleted":'تم حذف المجموعة',"questions":'سؤال',"question":'سؤال',
+"Turn a lesson into a game":'حوّل درسًا إلى لعبة',
+"Set title (optional)":'عنوان المجموعة (اختياري)',"Set title":'عنوان المجموعة',"e.g. The Water Cycle":'مثال: دورة الماء',"Topic":'الموضوع',"Grade":'الصف',"Grades K–2":'الروضة – الصف 2',"Grades":'الصفوف',
+"Your lesson (paste notes, a text, or just describe the topic)":'درسك (الصق ملاحظات أو نصًا، أو صف الموضوع فقط)',
+"Paste the lesson here… e.g. 'The water cycle: evaporation, condensation, precipitation, collection…'":'الصق الدرس هنا… مثال: «دورة الماء: التبخر، التكاثف، الهطول، التجمع…»',
+"or upload a .txt file":'أو ارفع ملف ‎.txt',"Questions per level":'عدد الأسئلة لكل مستوى',"Question language":'لغة الأسئلة',"Same as the lesson":'مثل لغة الدرس',"English":'الإنجليزية',
+"Simple words, recall & recognition, hints in the question":'كلمات بسيطة، تذكّر وتعرّف، مع تلميحات في السؤال',"On-grade understanding & applying the idea":'فهم بمستوى الصف وتطبيق الفكرة',
+"Analysis, multi-step reasoning & \"why\" questions":'تحليل واستدلال متعدد الخطوات وأسئلة «لماذا»',"Generate questions":'أنشئ الأسئلة',
+"Paste a lesson or describe a topic first":'الصق درسًا أو صف موضوعًا أولًا',
+"AI is not available in this view":'الذكاء الاصطناعي غير متاح هنا',"Too many requests":'طلبات كثيرة',"wait a minute and try again":'انتظر دقيقة ثم حاول مجددًا',"AI permission was not given":'لم يُمنح إذن الذكاء الاصطناعي',
+"no usable questions came back":'لم تصل أسئلة صالحة',"try again":'حاول مجددًا',"the translation came back incomplete":'وصلت الترجمة ناقصة',"That file is big":'الملف كبير',"paste the key part instead":'الصق الجزء المهم بدلًا منه',"Lesson loaded":'تم تحميل الدرس',
+"Edit lesson":'تعديل الدرس',"Review your questions":'راجع أسئلتك',"Save & Host":'احفظ واستضف',"Save to library":'احفظ في المكتبة',"Regenerate":'أعد الإنشاء',
+"Remove anything you don't like with ✕, or add your own below. Saved sets appear in the Topic Library for every teacher using this page":'احذف ما لا يعجبك بـ ✕ أو أضف أسئلتك أدناه. تظهر المجموعات المحفوظة في مكتبة المواضيع لكل معلم يستخدم هذه الصفحة',
+"Add a question":'أضف سؤالًا',"Question":'السؤال',"Correct answer":'الإجابة الصحيحة',"Wrong answer":'إجابة خاطئة',"Add":'أضف',"Add a question, the correct answer and at least one wrong answer":'أضف سؤالًا والإجابة الصحيحة وإجابة خاطئة واحدة على الأقل',
+"Add at least one question":'أضف سؤالًا واحدًا على الأقل',"Saved to the library":'تم الحفظ في المكتبة',
+"Quiz style":'نمط الاختبار',"Classic game modes":'أنماط اللعب الكلاسيكية',"Gen Alpha modes":'أنماط جيل ألفا',"Gen Alpha":'جيل ألفا',
+"Choose a game mode":'اختر نمط اللعب',"Sets":'المجموعات',"Modes":'الأنماط',"Time limit":'الوقت المحدد',"Until everyone finishes":'حتى ينتهي الجميع',"No limit (I end it)":'بلا حد (أنهيها بنفسي)',"minutes":'دقائق',
+"Finish line":'خط النهاية',"steps":'خطوة',"platforms":'منصة',"Differentiation":'التمايز',"which level does each student get":'أي مستوى يحصل عليه كل طالب',"Students choose":'الطلاب يختارون',"I assign in lobby":'أحدّدها في الردهة',
+"Create game":'أنشئ اللعبة',"Can't reach the game data yet. Check your connection":'تعذّر الوصول إلى بيانات اللعبة. تحقق من اتصالك',"Home":'الرئيسية',"Game not found":'اللعبة غير موجودة',"Only the host can open this screen":'المضيف فقط يمكنه فتح هذه الشاشة',
+"CODE":'الرمز',"End game":'إنهاء اللعبة',"Students: open":'الطلاب: افتحوا',"enter":'وأدخلوا',"Levels":'المستويات',"students choose":'الطلاب يختارون',"you assign below":'أنت تحددها أدناه',"Start game":'ابدأ اللعبة',
+"Waiting for players":'بانتظار اللاعبين',"Remove":'إزالة',"Leaderboard":'لوحة المتصدرين',"Live answers":'الإجابات المباشرة',"Report":'التقرير',"Game over":'انتهت اللعبة',"No players yet":'لا يوجد لاعبون بعد',"you":'أنت',
+"Every answer, live":'كل إجابة مباشرة',"answered":'أجاب',"correct":'الصحيحة',"time ran out":'انتهى الوقت',"Answers will stream in here as students play":'ستظهر الإجابات هنا أثناء لعب الطلاب',
+"Players":'اللاعبون',"Answers":'الإجابات',"Accuracy":'الدقة',"Avg time":'متوسط الوقت',"Copy results (CSV)":'نسخ النتائج (CSV)',"Paste into Excel / Google Sheets":'الصقها في Excel أو Google Sheets',"Students":'الطلاب',
+"Each square is a question at the student's level: 🟩 right":'كل مربع سؤال بمستوى الطالب: 🟩 صحيح',"wrong":'خطأ',"right after a retry":'صحيح بعد محاولة أخرى',"not yet. Hover for their answer":'لم يُجب بعد. مرّر المؤشر لرؤية إجابته',
+"Student":'الطالب',"Hide":'إخفاء',"Answered":'أجاب',"Correct":'الصحيحة',"No answers yet":'لا توجد إجابات بعد',"First-try correct":'صحيح من أول محاولة',"Most common wrong answer":'أكثر إجابة خاطئة شيوعًا',"Questions":'الأسئلة',
+"not attempted":'لم يُجب',"Copied! Paste into a spreadsheet":'تم النسخ! الصقه في جدول بيانات',"Copy this":'انسخ هذا',"Close":'إغلاق',"Loading your games":'جارٍ تحميل ألعابك',"Loading game":'جارٍ تحميل اللعبة',
+"No games yet":'لا توجد ألعاب بعد',"host one":'استضف واحدة',"Open":'افتح',"ended":'انتهت',"lobby":'الردهة',"live":'مباشرة',"Enter the 6-digit game code":'أدخل رمز اللعبة المكوّن من 6 أرقام',"Could not reach the game":'تعذّر الوصول إلى اللعبة',
+"No game with that code":'لا توجد لعبة بهذا الرمز',"That game has already ended":'انتهت هذه اللعبة بالفعل',"Game name":'اسمك في اللعبة',"Your nickname":'اسمك المستعار',"Pick your buddy":'اختر رفيقك',"Pick your level":'اختر مستواك',"Join game":'انضم إلى اللعبة',
+"Warm-Up":'تمهيدي',"Core":'أساسي',"Challenge":'تحدٍّ',"support":'دعم',"on-level":'بمستوى الصف',"stretch":'متقدّم',"waiting for your teacher to start":'بانتظار أن يبدأ المعلم',
+"All questions done":'انتهت كل الأسئلة',"You made it to the finish":'وصلت إلى خط النهاية',"You won":'لقد فزت',"Final leaderboard":'الترتيب النهائي',"Your answers":'إجاباتك',"You":'أنت',"Answer":'الإجابة',"No answers":'لا توجد إجابات',
+"Your score":'نتيجتك',"tap to continue":'اضغط للمتابعة',"Time's up":'انتهى الوقت',"Continue":'متابعة',"Leaderboard ":'لوحة المتصدرين',
+"armed":'مفعّل',"Streak Saver armed":'حامي السلسلة مفعّل',"Double Points":'نقاط مضاعفة',"Time Freeze":'تجميد الوقت',"Streak Saver":'حامي السلسلة',"Streak Saver kept your streak":'حامي السلسلة حافظ على سلسلتك',"Streak reset":'انقطعت السلسلة',
+"pts":'نقطة',"lbs":'رطل',"KOs":'إقصاء',"Streak":'السلسلة',"Rank":'المركز',"Blast ready":'الضربة جاهزة',"Critical blast ready":'ضربة حرجة جاهزة',"REVIVED with 40 HP":'عدت للحياة بـ 40 نقطة صحة',"Revive":'إحياء',
+"Revive progress reset":'عاد تقدّم الإحياء إلى الصفر',"HP":'صحة',"Heal":'علاج',"Healed":'تم العلاج',"Nobody left to blast":'لم يتبقَّ أحد لضربه',"OUT":'خارج اللعبة',"You're out! Get 3 right in a row to revive":'لقد خرجت! أجب 3 إجابات صحيحة متتالية لتعود',
+"Pick a password to crack":'اختر كلمة مرور لكسرها',"coins":'عملة',"HACK":'اختراق',"steal":'اسرق',"Who do you hack":'من تريد أن تخترق',"Pick a chest":'اختر صندوقًا',"gold":'ذهب',"DOUBLE GOLD":'ذهب مضاعف',"TRIPLE GOLD":'ذهب ثلاثي',
+"Empty chest… nothing":'صندوق فارغ… لا شيء',"STEAL 25% from":'اسرق 25% من',"SWAP gold with":'بدّل الذهب مع',"Engine stalled":'تعطّل المحرك',"NITRO":'نيترو',"FINISHED":'وصلت!',"Finished":'أنهى',
+"Something is biting":'سمكة تعضّ الطُعم',"Reel it in":'اسحب الصنارة',"LUCKY LURE":'طُعم الحظ',"FRENZY: your next 3 catches are ×2":'جنون الصيد: صيداتك الثلاث القادمة ×2',"The fish got away":'هربت السمكة',"Frenzy left":'المتبقي من الجنون',
+"Minnow":'سمكة صغيرة',"Clownfish":'سمكة المهرج',"Pufferfish":'السمكة المنتفخة',"Crab":'سلطعون',"Squid":'حبار',"Octopus":'أخطبوط',"Shark":'قرش',"Blue Whale":'الحوت الأزرق',"Lucky Lure":'طُعم الحظ',
+"A customer walked out":'غادر زبون غاضبًا',"Cafe upgraded":'تمت ترقية المقهى',"Cafe level":'مستوى المقهى',"served":'زبون',"Pick a dig site":'اختر موقع الحفر',"Keep it":'احتفظ به',"safe":'آمن',"Cheat":'غُشّ',"risk":'خطر',
+"CAUGHT CHEATING":'تم ضبطك تغش',"Got away with it":'نجوت بفعلتك',"aura":'هالة',"Negative Aura":'هالة سلبية',"NPC":'شخصية ثانوية',"Main Character":'الشخصية الرئيسية',"Sigma":'سيغما',"Aura Legend":'أسطورة الهالة',"Infinite Aura":'هالة لا نهائية',
+"Checkpoint":'نقطة حفظ',"OBBY COMPLETE":'أنهيت المسار',"Fell to checkpoint":'سقطت إلى نقطة الحفظ',"Slipped… but held on":'انزلقت… لكنك تماسكت',"Open your crate":'افتح صندوقك',
+"Common":'عادي',"Rare":'نادر',"Epic":'ملحمي',"Legendary":'أسطوري',"Mythic":'خرافي',"value":'قيمة',"followers":'متابع',"WENT VIRAL":'انتشرت بقوة',
+"New Streamer":'صانع محتوى جديد',"Rising Star":'نجم صاعد',"Influencer":'مؤثر',"Viral Icon":'أيقونة منتشرة',"Mega Creator":'صانع محتوى خارق',
+"Quiz Show":'عرض الأسئلة',"Last One Standing":'آخر الصامدين',"Code Breaker":'كاسر الشيفرة',"Treasure Quest":'رحلة الكنز',"Turbo Race":'سباق التيربو',"Deep Sea Fishing":'صيد أعماق البحر',"Cafe Rush":'زحمة المقهى',
+"Dino Dig":'تنقيب الديناصورات',"Aura Farm":'مزرعة الهالة',"Obby Dash":'سباق العوائق',"Loot Drop":'صناديق الغنائم',"Streamer Rush":'سباق صنّاع المحتوى',
+"Math":'الرياضيات',"Science":'العلوم',"Geography":'الجغرافيا',"History":'التاريخ',"Space":'الفضاء',"Coding & Tech":'البرمجة والتقنية',"Online Life & Safety":'الحياة الرقمية والأمان',"Other":'أخرى',"Arabic Language":'اللغة العربية',
+"You're signed in. Tell us who you are":'لقد سجّلت الدخول. أخبرنا من أنت',"I am a":'أنا',"Teacher":'معلّم',"Host games & see answers":'استضف الألعاب وشاهد الإجابات',"Join games with a code":'انضم إلى الألعاب برمز',"Let's go":'هيا بنا',
+"Your profile":'ملفك الشخصي',"Role":'الدور',"Buddy":'الرفيق',"Save":'حفظ',"Sign in to play":'سجّل الدخول للعب',
+"you can create one or sign in with":'يمكنك إنشاء حساب أو الدخول عبر',"Continue with Google":'المتابعة باستخدام Google',
+
+"Can't save yet":'لا يمكن الحفظ بعد',"You can see this page, but your account can't save games or answers here yet":'يمكنك رؤية هذه الصفحة، لكن حسابك لا يستطيع حفظ الألعاب أو الإجابات هنا بعد',
+"Ask the teacher (the page owner) to share":'اطلب من المعلم (مالك الصفحة) مشاركة',"with you with":'معك بصلاحية',"Editor":'محرر',"access (or":'(أو',"Contributor":'مساهم',"on a Team plan), then reload":'في خطة Team)، ثم أعد التحميل',"OK":'حسنًا',
+"Storage is full":'المساحة ممتلئة',"the owner should delete old games or sets":'على المالك حذف الألعاب أو المجموعات القديمة',"Loading":'جارٍ التحميل',"Upload your lesson":'ارفع درسك',"any file":'أي ملف',"Choose files":'اختر ملفات',
+"PowerPoint, PDF, Word, Excel, pictures (JPG, PNG, screenshots…) or text. Add several files at once, drag them here, or paste a screenshot (Ctrl+V)":'PowerPoint أو PDF أو Word أو Excel أو صور (JPG وPNG ولقطات الشاشة…) أو نص. أضف عدة ملفات معًا أو اسحبها هنا أو الصق لقطة شاشة (Ctrl+V)',
+"picture":'صورة',"text ✓":'نص ✓',"Your file is ready":'ملفك جاهز',"slide":'شريحة',"page":'صفحة',"Up to 10 files at a time":'حتى 10 ملفات في المرة الواحدة',"Old file type":'نوع ملف قديم',
+"Enter the code from your teacher. No account needed":'أدخل الرمز من معلمك. لا تحتاج إلى حساب',"Teachers":'المعلمون',
+"Make a game from your lesson, post it, share the code and watch every answer live":'اصنع لعبة من درسك، انشرها، شارك الرمز وشاهد كل إجابة مباشرة',"Make a game with AI":'اصنع لعبة بالذكاء الاصطناعي',
+"My games":'ألعابي',"Sign in to make games from your lessons, host them and see every answer live":'سجّل الدخول لتصنع ألعابًا من دروسك وتستضيفها وتشاهد كل إجابة مباشرة',"Sign out":'تسجيل الخروج',
+"Lesson → Game with AI":'درس ← لعبة بالذكاء الاصطناعي',"Upload your PowerPoint or PDF. Get a game with pictures and 3 levels":'ارفع ملف PowerPoint أو PDF واحصل على لعبة بصور وثلاثة مستويات',
+"Ready-to-play topics + games made by teachers":'مواضيع جاهزة للعب + ألعاب صنعها المعلمون',"See reports, get links and host your games again":'شاهد التقارير واحصل على الروابط وأعد استضافة ألعابك',
+"Teachers, sign in":'المعلمون: سجّلوا الدخول',"Sign in to make games, host them and see every answer. Students don't need an account":'سجّل الدخول لتصنع الألعاب وتستضيفها وتشاهد كل إجابة. لا يحتاج الطلاب إلى حساب',
+"they join with a code and their name":'ينضمون برمز واسمهم فقط',"Allow pop-ups for this site, then try again":'اسمح بالنوافذ المنبثقة لهذا الموقع ثم حاول مجددًا',
+"ready-made game":'لعبة جاهزة',"No games yet":'لا توجد ألعاب بعد',"Upload your lesson and get a game in seconds":'ارفع درسك واحصل على لعبة خلال ثوانٍ',"Make with AI":'اصنع بالذكاء الاصطناعي',"AI-made, with pictures":'بالذكاء الاصطناعي، مع صور',
+"Ready-made":'جاهزة',"Mine":'لعبتي',"This game was removed":'تم حذف هذه اللعبة',"Host this game":'استضف هذه اللعبة',"Edit":'تعديل',"Delete":'حذف',"Deleted":'تم الحذف',
+"Emoji picture":'صورة إيموجي',"Picture":'صورة',"No picture":'بدون صورة',"Delete question":'حذف السؤال',"That picture is too big":'الصورة كبيرة جدًا',"try another one":'جرّب صورة أخرى',"Could not use that picture":'تعذّر استخدام هذه الصورة',
+"Turn your lesson into a game":'حوّل درسك إلى لعبة',"Upload your lesson":'ارفع درسك',"PowerPoint or PDF":'PowerPoint أو PDF',
+"The slides you present (.pptx or PDF), a worksheet or a .txt file. The game is made from your slides, speaker notes and pictures":'الشرائح التي تعرضها (‎.pptx أو PDF)، أو ورقة عمل، أو ملف ‎.txt. تُصنع اللعبة من شرائحك وملاحظات المتحدث والصور',
+"or type / paste your lesson":'أو اكتب / الصق درسك',"Paste the lesson or describe the topic… e.g. 'The water cycle: evaporation, condensation, precipitation, collection'":'الصق الدرس أو صف الموضوع… مثال: «دورة الماء: التبخر، التكاثف، الهطول، التجمع»',
+"Title (optional)":'العنوان (اختياري)',"Make my game":'اصنع لعبتي',"Reading your file":'جارٍ قراءة ملفك',"Preparing pictures":'جارٍ تجهيز الصور',"no text":'لا يوجد نص',"pictures will be used":'سيتم استخدام الصور',"pictures":'صورة',
+"Your file is ready":'ملفك جاهز',"Your PowerPoint is ready":'ملف PowerPoint جاهز',"no readable text or pages":'لا يوجد نص أو صفحات مقروءة',"Still reading your file":'ما زلت أقرأ ملفك',
+"Upload your lesson or type a topic first":'ارفع درسك أو اكتب موضوعًا أولًا',"Making your game":'جارٍ صنع لعبتك',"Writing questions at 3 levels and picking pictures. Usually 20–40 seconds":'نكتب الأسئلة بثلاثة مستويات ونختار الصور. عادةً 20–40 ثانية',
+"Translating":'جارٍ الترجمة',"Edit your game":'عدّل لعبتك',"Your game is ready":'لعبتك جاهزة',"Game title":'عنوان اللعبة',"Game mode":'نمط اللعب',"Post game":'انشر اللعبة',"Posting":'جارٍ النشر',"Save only":'حفظ فقط',"More options":'خيارات أكثر',
+"Post game gives you a code and a link for your students right away. You can change any question, emoji or picture below first":'زر «انشر اللعبة» يعطيك رمزًا ورابطًا لطلابك فورًا. يمكنك تعديل أي سؤال أو إيموجي أو صورة أدناه أولًا',
+"Saved":'تم الحفظ',"Game modes":'أنماط اللعب',"Library":'المكتبة',"options":'الخيارات',"Game length":'مدة اللعبة',"Time per question":'الوقت لكل سؤال',"No timer":'بدون مؤقت',"seconds":'ثانية',
+"Shuffle the answer choices":'اخلط ترتيب الإجابات',"Show the right answer after each question":'أظهر الإجابة الصحيحة بعد كل سؤال',"Let students join after the game starts":'اسمح للطلاب بالانضمام بعد بدء اللعبة',"Sound effects":'المؤثرات الصوتية',
+"No questions to play":'لا توجد أسئلة للعب',"Can't reach the game yet. Check your connection":'تعذّر الوصول إلى اللعبة. تحقق من اتصالك',"Only the teacher who made this game can open this screen":'المعلم الذي أنشأ هذه اللعبة فقط يمكنه فتح هذه الشاشة',
+"Copy link":'نسخ الرابط',"Link copied":'تم نسخ الرابط',"Students: go to the website, tap":'الطلاب: افتحوا الموقع واضغطوا',"and enter":'وأدخلوا',"per question":'لكل سؤال',"Scan to join":'امسح للانضمام',"QR code":'رمز QR',
+"Host again":'استضف مجددًا',"Place":'المركز',"Games I hosted":'ألعاب استضفتها',"Games I made":'ألعاب صنعتها',"Link":'الرابط',"You haven't made a game yet":'لم تصنع أي لعبة بعد',"Make one with AI":'اصنع واحدة بالذكاء الاصطناعي',
+"Could not connect":'تعذّر الاتصال',"check your internet":'تحقق من الإنترنت',"The teacher removed you from this game":'أزالك المعلم من هذه اللعبة',"This game already started":'بدأت هذه اللعبة بالفعل',"ask your teacher":'اسأل معلمك',
+"Your name":'اسمك',"Type your name":'اكتب اسمك',"Type your name first":'اكتب اسمك أولًا',"This game was closed":'تم إغلاق هذه اللعبة',"Not allowed":'غير مسموح',"sign in again, or this belongs to another teacher":'سجّل الدخول مجددًا، أو أن هذا يخص معلمًا آخر',
+"The free daily limit was reached. Try again tomorrow or upgrade Firebase":'تم الوصول إلى الحد اليومي المجاني. حاول غدًا أو قم بترقية Firebase',"Game not found":'اللعبة غير موجودة',"Turn on Anonymous sign-in in Firebase (README step 2)":'فعّل تسجيل الدخول المجهول في Firebase (الخطوة 2 في الدليل)',
+"Topic library":'مكتبة المواضيع',"Teacher":'المعلم',"Teachers ":'المعلمون',"by":'بواسطة',
+"min":'دقيقة',"used":'تم استخدامها',
+"Detect from lesson":'اكتشفه من الدرس',"Upload your lesson PDF":'ارفع ملف PDF لدرسك',"Choose file":'اختر ملفًا',
+
+"Upload your lesson":'ارفع درسك',"PowerPoint or PDF":'PowerPoint أو PDF',"slides":'شريحة',"speaker notes ✓":'ملاحظات المتحدث ✓',"speaker notes":'ملاحظات المتحدث',"pictures from your slides":'صورة من شرائحك',
+"no text on the slides":'لا يوجد نص على الشرائح',"Reading PowerPoint":'جارٍ قراءة ملف PowerPoint',"PowerPoint ready":'ملف PowerPoint جاهز',
+"Old PowerPoint file":'ملف PowerPoint قديم',"That PowerPoint is over 100 MB":'حجم ملف PowerPoint أكبر من 100 ميغابايت',"try a smaller copy":'جرّب نسخة أصغر',
+"Reading PDF":'جارٍ قراءة ملف PDF',"Preparing slide images":'جارٍ تجهيز صور الشرائح',"pages":'صفحة',"text found":'تم العثور على نص',"no text (scanned)":'لا يوجد نص (ممسوح ضوئيًا)',
+"Lesson PDF ready":'ملف الدرس جاهز',
+"Still reading your PDF":'ما زلت أقرأ ملف PDF',"one moment":'لحظة واحدة',
+"That PDF is over 60 MB":'حجم ملف PDF أكبر من 60 ميغابايت',"try a smaller export":'جرّب تصديرًا أصغر'
+};
+Object.assign(AR,{
+[MODES.classic.desc]:'أسئلة بوقت محدد مع مكافأة سرعة، سلاسل إجابات، ميمز وقوى إضافية (50/50، ×2، تجميد الوقت، حامي السلسلة).',
+[MODES.royale.desc]:'كل إجابة صحيحة تتيح لك ضرب زميل. إذا نفدت صحتك تخرج — أجب 3 مرات صحيحة متتالية لتعود.',
+[MODES.hack.desc]:'الإجابات الصحيحة تكسر كلمات مرور وتربحك عملات — أو اخترق زميلًا واسرق 20% من عملاته.',
+[MODES.gold.desc]:'الإجابة الصحيحة تفتح صندوق كنز — ذهب، مضاعف، ثلاثي… أو تخسر ذهبًا، أو تسرق من أحد، أو تبادل!',
+[MODES.race.desc]:'كل إجابة صحيحة تحرّك سيارتك للأمام. 3 متتالية = نيترو (+2). أول من يعبر خط النهاية يفوز!',
+[MODES.fish.desc]:'الإجابات الصحيحة تتيح لك رمي الصنارة واصطياد السمك. اعثر على طُعم الحظ لجنون صيد ثلاث مرات (×2)!',
+[MODES.cafe.desc]:'كل إجابة صحيحة تخدم زبونًا. السلاسل تجلب إكراميات، وكل 5 زبائن تتم ترقية مقهاك.',
+[MODES.dino.desc]:'احفر بحثًا عن الأحافير بالإجابات الصحيحة. غُشّ لتضاعف ما وجدته… لكن قد يتم ضبطك بنسبة 35%!',
+[MODES.aura.desc]:'اجمع الهالة بالإجابات الصحيحة. الكومبو يضاعف حتى ×5. الإجابة الخاطئة تكلّف −150 هالة. ارتقِ من شخصية ثانوية إلى هالة لا نهائية ♾️.',
+[MODES.obby.desc]:'مسار عوائق (باركور): الإجابة الصحيحة تقفز بك إلى المنصة التالية، والخاطئة تُسقطك إلى آخر نقطة حفظ (كل 5).',
+[MODES.loot.desc]:'كل إجابة صحيحة تفتح صندوق غنائم: عادي ← نادر ← ملحمي ← أسطوري ← خرافي. السلاسل ترفع فرصك في الغنائم النادرة!',
+[MODES.stream.desc]:'نمِّ قناتك: الإجابات الصحيحة تجلب متابعين، والسلاسل قد تجعلك تنتشر بقوة. الإجابات الخاطئة تُفقدك 10% من المتابعين.'});
+const T=s=>trSeg(s);
+const ARP=[
+[/^✅ (\d+) files ready$/,'✅ $1 ملفات جاهزة'],[/^Couldn't read (.+?): (.*)$/,(m,a,b)=>`تعذّرت قراءة ${a}: ${T(b)}`],[/^(😕 )?Could not make the game: (.*)$/,(m,e,a)=>(e||'')+'تعذّر صنع اللعبة: '+T(a)],[/^(😕 )?Could not translate: (.*)$/,(m,e,a)=>(e||'')+'تعذّرت الترجمة: '+T(a)],
+[/^Sign-in failed: (.*)$/,'فشل تسجيل الدخول: $1'],[/^Could not start: (.*)$/,'تعذّر التشغيل: $1'],[/^Joining (.+)$/,(m,a)=>'الانضمام إلى '+T(a)],[/^for "(.+)"$/,'لـ «$1»'],
+[/^(.+) — options$/,(m,a)=>T(a)+' — الخيارات'],[/^(\d+) ready-made games?$/,'$1 لعبة جاهزة'],[/^(\d+) seconds$/,'$1 ثانية'],[/^⏲️ (\d+)s per question$/,'⏲️ $1 ثانية لكل سؤال'],
+[/^This website address is not allowed in Firebase yet \(README step 4\)\.?$/,'عنوان هذا الموقع غير مسموح في Firebase بعد (الخطوة 4 في الدليل).'],[/^Turn on Google sign-in in Firebase \(README step 2\)\.?$/,'فعّل تسجيل الدخول عبر Google في Firebase (الخطوة 2 في الدليل).'],
+[/^AI question-making works after you put the website online \(see README\)\. In demo mode, use the Topic library\.?$/,'صنع الأسئلة بالذكاء الاصطناعي يعمل بعد نشر الموقع (راجع الدليل). في الوضع التجريبي استخدم مكتبة المواضيع.'],
+[/^Welcome, (.+?)!?$/,(m,a)=>`أهلًا بك يا ${a}!`],[/^Welcome!?$/,'أهلًا بك!'],
+[/^You're in, (.+?)!$/,(m,a)=>`أنت في اللعبة يا ${a}!`],[/^Joining (.+)$/,(m,a)=>'الانضمام إلى '+T(a)],
+[/^You finished #(\d+) with (.+)$/,(m,a,b)=>`أنهيت في المركز #${a} بـ ${T(b)}`],[/^(\d+)\/(\d+) correct$/,'$1/$2 إجابة صحيحة'],
+[/^You're #(\d+) with (.+?)\. Waiting for your teacher to end the game…$/,(m,a,b)=>`أنت في المركز #${a} بـ ${T(b)}. بانتظار أن يُنهي المعلم اللعبة…`],
+[/^([^A-Za-z]*)(.+) Mix$/,(m,e,a)=>e+'مزيج '+T(a)],[/^(.+) settings$/,(m,a)=>'إعدادات '+T(a)],[/^for "(.+)"$/,'لـ «$1»'],[/^by (.+)$/,'بواسطة $1'],
+[/^(\d+) built-in sets?$/,'$1 مجموعة جاهزة'],[/^(\d+) by teachers$/,'$1 من المعلمين'],
+[/^everyone (.+)$/,(m,a)=>'الجميع: '+T(a)],[/^(\S+ )?Everyone Level (\d)$/,(m,e,a)=>(e||'')+'الجميع المستوى '+a],[/^⏱ (\d+) min$/,'⏱ $1 دقيقة'],
+[/^(😕 )?Could not generate: (.*)$/,(m,e,a)=>(e||'')+'تعذّر الإنشاء: '+T(a)],[/^Could not save: (.*)$/,'تعذّر الحفظ: $1'],[/^Couldn't read that PDF: (.*)$/,'تعذّرت قراءة ملف PDF: $1'],[/^Couldn't read that PowerPoint: (.*)$/,'تعذّرت قراءة ملف PowerPoint: $1'],
+[/^Power-up: (.+)$/,(m,a)=>'قوة إضافية: '+T(a)],[/^(.+) used!$/,(m,a)=>T(a)+' — تم استخدامها!'],
+[/^(💀 )?You knocked out (.+)!$/,(m,e,a)=>(e||'')+`أقصيت ${a}!`],[/^(💥 )?Hit (.+) for (\d+)!$/,(m,e,a,b)=>(e||'')+`أصبت ${a} بـ ${b} ضرر!`],
+[/^(💥 )?Blast someone for (\d+) damage!$/,(m,e,a)=>(e||'')+`اضرب أحدًا بـ ${a} ضرر!`],[/^💀 Out! Revive: (\d)\/3 right in a row$/,'💀 خرجت! الإحياء: $1/3 إجابات صحيحة متتالية'],
+[/^(💻 )?Hacked (.+) for (\d+) coins!$/,(m,e,a,b)=>(e||'')+`اخترقت ${a} وأخذت ${b} عملة!`],
+[/^😬 Lost (\d+)% of your gold$/,'😬 خسرت $1% من ذهبك'],[/^🦹 Stole (\d+) gold from (.+)!$/,'🦹 سرقت $1 ذهب من $2!'],[/^🔄 Swapped gold with (.+)!$/,'🔄 بدّلت الذهب مع $1!'],
+[/^(\S+) You caught a (.+)!$/,(m,e,a)=>`${e} اصطدت ${T(a)}!`],
+[/^(\S+) Served (.+?)! \+\$(\d+)(?: \(tip \$(\d+)\))?$/,(m,e,a,b,c)=>`${e} قدّمت ${T(a)}! +$${b}${c?` (إكرامية $${c})`:''}`],
+[/^(\S+) Found a fossil worth (\d+)!$/,'$1 وجدت أحفورة قيمتها $2!'],[/^Fossil confiscated and −(\d+)$/,'صودرت الأحفورة و−$1'],
+[/^\+(\d+) aura \(combo ×(\d)\)$/,'+$1 هالة (كومبو ×$2)'],[/^🦘 (Double jump|Jump)! ?(🚩 Checkpoint!)?$/,(m,a,b)=>'🦘 '+(a==='Jump'?'قفزة!':'قفزة مزدوجة!')+(b?' 🚩 نقطة حفظ!':'')],
+[/^Ratio'd 😬 −(.+) followers$/,'خسرت متابعين 😬 −$1'],[/^\+(.+) followers 🚀 WENT VIRAL!$/,'+$1 متابع 🚀 انتشرت بقوة!'],
+[/^💥 (.+) blasted you for (\d+)!( You're OUT 💀)?$/,(m,a,b,c)=>`💥 ${a} ضربك بـ ${b}!${c?' لقد خرجت 💀':''}`],[/^🔄 (.+) swapped with you!$/,'🔄 $1 بدّل الذهب معك!'],[/^🦹 (.+) took (\d+) from you!$/,'🦹 $1 أخذ منك $2!'],
+[/^pizza$/,'بيتزا'],[/^burger$/,'برغر'],[/^tacos$/,'تاكو'],[/^bubble tea$/,'شاي الفقاعات'],[/^donuts$/,'دونات'],[/^ramen$/,'رامن'],[/^a smoothie$/,'سموذي'],[/^fries$/,'بطاطس مقلية'],[/^ice cream$/,'آيس كريم']
+];
+function fixAff(a){return a.replace(/\?/g,'؟').replace(/→/g,'\u0001').replace(/←/g,'→').replace(/\u0001/g,'←')}
+function trSeg(seg){const m=seg.match(/^(\s*)([\s\S]*?)(\s*)$/);const s=m[2];if(!/[A-Za-z]/.test(s))return seg;
+ let r=AR[s];if(r!=null)return m[1]+r+m[3];
+ for(const [re,f] of ARP)if(re.test(s))return m[1]+s.replace(re,f)+m[3];
+ const k=s.match(/^([^A-Za-z]*)([A-Za-z](?:[\s\S]*[A-Za-z])?)([^A-Za-z]*)$/);
+ if(k){r=AR[k[2]];if(r==null)for(const [re,f] of ARP)if(re.test(k[2])){r=k[2].replace(re,f);break}
+  if(r!=null)return m[1]+fixAff(k[1])+r+fixAff(k[3])+m[3]}
+ return seg}
+function trText(t){if(!/[A-Za-z]/.test(t))return t;const tt=t.trim();if(AR[tt]!=null)return t.replace(tt,AR[tt]);return t.split(/( · | — )/).map(p=>/^( · | — )$/.test(p)?p:trSeg(p)).join('')}
+function trTextNode(n){const p=n.parentElement;if(!p||p.closest('.nt,script,style,textarea'))return;const v=n.nodeValue;if(!v||v.length>800||!/[A-Za-z]/.test(v))return;const t=trText(v);if(t!==v){n.__en=v;n.nodeValue=t}}
+function trNode(root){if(S.lang!=='ar'||!root)return;if(root.nodeType===3)return trTextNode(root);if(root.nodeType!==1||root.closest('.nt,script,style,textarea'))return;
+ const els=[root,...root.querySelectorAll('[placeholder],[title]')];
+ for(const el of els){if(el.closest('.nt'))continue;for(const at of ['placeholder','title']){const v=el.getAttribute(at);if(v&&!el.hasAttribute('data-en-'+at)){const t=trText(v);if(t!==v){el.setAttribute('data-en-'+at,v);el.setAttribute(at,t)}}}}
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const list=[];let n;while((n=w.nextNode()))list.push(n);list.forEach(trTextNode)}
+function restoreEn(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode()))if(n.__en!=null){n.nodeValue=n.__en;delete n.__en}
+ for(const at of ['placeholder','title'])root.querySelectorAll('[data-en-'+at+']').forEach(el=>{el.setAttribute(at,el.getAttribute('data-en-'+at));el.removeAttribute('data-en-'+at)})}
+function applyLang(){const ar=S.lang==='ar';document.documentElement.lang=ar?'ar':'en';document.documentElement.dir=ar?'rtl':'ltr';const b=$('#langb');if(b)b.textContent=ar?'🌐 English':'🌐 عربي';document.title=ar?'هيا نتعلّم ونلعب':"Let's Learn And Play";if(ar)trNode(document.body);else restoreEn(document.body)}
+function toggleLang(){S.lang=S.lang==='ar'?'en':'ar';LS.set('llp_lang',S.lang);applyLang()}
+new MutationObserver(muts=>{if(S.lang!=='ar')return;for(const m of muts){if(m.type==='characterData')trTextNode(m.target);else m.addedNodes.forEach(trNode)}}).observe(document.body,{childList:true,subtree:true,characterData:true});
+
+
+boot();
+</script>
+</body>
+</html>
