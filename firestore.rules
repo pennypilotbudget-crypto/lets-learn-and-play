@@ -1,0 +1,52 @@
+rules_version = '2';
+// Let's Learn And Play — who can read and change what.
+// Teachers = signed in with Google. Students = anonymous (no account, just a name).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn()  { return request.auth != null; }
+    function isTeacher() { return signedIn() && request.auth.token.firebase.sign_in_provider == 'google.com'; }
+    function hostOf(code) { return get(/databases/$(database)/documents/games/$(code)).data.hostId == request.auth.uid; }
+
+    // Question sets (games teachers made) — shared with all teachers
+    match /sets/{id} {
+      allow read: if isTeacher();
+      allow create: if isTeacher() && request.resource.data.ownerId == request.auth.uid;
+      allow update: if isTeacher() && resource.data.ownerId == request.auth.uid
+                    && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if isTeacher() && resource.data.ownerId == request.auth.uid;
+    }
+
+    // Pictures on questions (small compressed images)
+    match /images/{id} {
+      allow read: if signedIn();
+      allow create: if isTeacher() && request.resource.data.ownerId == request.auth.uid
+                    && request.resource.data.data is string && request.resource.data.data.size() < 900000;
+      allow delete: if isTeacher() && resource.data.ownerId == request.auth.uid;
+    }
+
+    // Live games — anyone with the code can read; only the host teacher changes them
+    match /games/{code} {
+      allow read: if signedIn();
+      allow create: if isTeacher() && request.resource.data.hostId == request.auth.uid;
+      allow update, delete: if isTeacher() && resource.data.hostId == request.auth.uid;
+
+      // Each student writes only their own player record
+      match /players/{uid} {
+        allow read: if signedIn();
+        allow create, update: if signedIn() && request.auth.uid == uid && request.resource.data.uid == uid
+                              && request.resource.data.nick is string && request.resource.data.nick.size() <= 20;
+        allow delete: if signedIn() && (request.auth.uid == uid || hostOf(code));
+      }
+      // Attacks / steals in the battle modes
+      match /hits/{id} {
+        allow read: if signedIn();
+        allow create: if signedIn() && request.resource.data.by == request.auth.uid;
+      }
+      // Leaderboard the host shares with students
+      match /live/{docId} {
+        allow read: if signedIn();
+        allow write: if signedIn() && hostOf(code);
+      }
+    }
+  }
+}

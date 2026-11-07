@@ -1,0 +1,8 @@
+{
+  "name": "lets-learn-and-play",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Classroom quiz games: teachers sign in with Google, students join with a code and their name.",
+  "engines": { "node": ">=18" }
+}
