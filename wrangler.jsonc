@@ -1,0 +1,7 @@
+{
+  // Cloudflare Workers settings (used when you connect this repository on Cloudflare)
+  "name": "lets-learn-and-play",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": { "directory": "./public", "binding": "ASSETS" }
+}
